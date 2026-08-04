@@ -1,5 +1,6 @@
 import type { SVGProps } from 'react'
 import { BrandLogo } from './brand-logo'
+import { FOOTER_LINKS } from '@/lib/config'
 
 function XIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -33,21 +34,6 @@ function YoutubeIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-const COLUMNS = [
-  {
-    title: 'Product',
-    links: ['Pricing', 'Changelog', 'Blog', 'Customers'],
-  },
-  {
-    title: 'Company',
-    links: ['About', 'Contact', 'Sign in', 'Careers'],
-  },
-  {
-    title: 'Legal',
-    links: ['Privacy', 'Terms', 'Security', 'Cookies'],
-  },
-]
-
 const SOCIALS = [
   { icon: XIcon, label: 'X / Twitter' },
   { icon: GithubIcon, label: 'GitHub' },
@@ -62,7 +48,7 @@ export function SiteFooter() {
         <div>
           <BrandLogo />
           <p className="mt-4 max-w-xs leading-relaxed text-muted-foreground">
-            The AI-native workspace for teams building what comes next.
+            The AI solutions studio for ambitious teams.
           </p>
           <div className="mt-6 flex items-center gap-2">
             {SOCIALS.map((social) => (
@@ -79,17 +65,17 @@ export function SiteFooter() {
         </div>
 
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-          {COLUMNS.map((col) => (
+          {FOOTER_LINKS.map((col) => (
             <div key={col.title}>
               <p className="text-sm font-semibold text-foreground">{col.title}</p>
               <ul className="mt-4 flex flex-col gap-3">
                 {col.links.map((link) => (
-                  <li key={link}>
+                  <li key={link.label}>
                     <a
-                      href="#"
+                      href={link.href}
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
-                      {link}
+                      {link.label}
                     </a>
                   </li>
                 ))}

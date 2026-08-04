@@ -1,6 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useEffect } from 'react'
+import { BOOKING_URL } from '@/lib/config'
+import gsap from 'gsap'
 import {
   ChevronRight,
   Search,
@@ -42,18 +44,36 @@ const cards = [
 ]
 
 export function Hero() {
-  const [pct, setPct] = useState(55.92)
   const mockupRef = useRef<HTMLDivElement | null>(null)
+  const heroRef = useRef<HTMLElement | null>(null)
 
-  // live-updating pill stat
   useEffect(() => {
-    const id = setInterval(() => {
-      setPct((p) => {
-        const next = p + (Math.random() * 0.4 - 0.15)
-        return Math.min(99.9, Math.max(40, Number(next.toFixed(4))))
-      })
-    }, 1800)
-    return () => clearInterval(id)
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.hero-el',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
+        }
+      )
+      gsap.fromTo(
+        '.hero-mockup',
+        { opacity: 0, scale: 0.95 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1.2,
+          delay: 0.4,
+          ease: 'expo.out',
+        }
+      )
+    }, heroRef)
+
+    return () => ctx.revert()
   }, [])
 
   // subtle parallax hover on the mockup
@@ -71,60 +91,55 @@ export function Hero() {
   }
 
   return (
-    <section id="top" className="relative overflow-hidden">
+    <section id="top" ref={heroRef} className="relative overflow-hidden">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 pt-16 pb-20 sm:px-6 lg:grid-cols-[1fr_1.05fr] lg:gap-6 lg:px-8 lg:pt-24 lg:pb-28">
         {/* Left */}
         <div className="max-w-xl">
-          <div className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-2 py-1 text-xs font-medium text-muted-foreground">
+          <div className="hero-el inline-flex items-center gap-2 rounded-md border border-border bg-card px-2 py-1 text-xs font-medium text-muted-foreground">
             <BrandMark className="size-3.5 text-primary" />
-            <span className="text-foreground">{BRAND_NAME} AI</span>
-            <span className="rounded bg-muted px-1.5 py-0.5 font-mono text-[11px] tabular-nums text-foreground">
-              {pct.toFixed(4)}%
-            </span>
+            <span className="text-foreground">AI-native solutions studio</span>
             <ChevronRight className="size-3.5" aria-hidden />
           </div>
 
-          <h1 className="mt-6 font-serif text-5xl leading-[1.05] font-semibold tracking-tight text-balance text-foreground sm:text-6xl">
-            The workspace for work with AI
+          <h1 className="hero-el mt-6 font-serif text-5xl leading-[1.05] font-semibold tracking-tight text-balance text-foreground sm:text-6xl">
+            AI solutions that actually ship.
           </h1>
 
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Plan projects, track issues, and let{' '}
-            <span className="font-medium text-foreground">AI agents</span> keep every workflow
-            moving.
+          <p className="hero-el mt-5 text-lg leading-relaxed text-muted-foreground">
+            Building custom <span className="font-medium text-foreground">AI-powered</span> web products and solutions for forward-thinking companies.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="hero-el mt-8 flex flex-col gap-3 sm:flex-row">
             <a
-              href="#get-started"
+              href={BOOKING_URL}
               className="inline-flex h-11 items-center justify-center gap-1.5 rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
             >
-              Start building
+              Book a call
               <ChevronRight className="size-4" aria-hidden />
             </a>
             <a
-              href="#get-started"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-border bg-card px-5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+              href="#solutions"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-border bg-card px-5 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
-              <GoogleIcon className="size-4" />
-              Continue with Google
+              See our work
             </a>
           </div>
         </div>
 
         {/* Right: app mockup */}
-        <div className="relative lg:-mr-24 xl:-mr-40" onMouseMove={onMove} onMouseLeave={onLeave}>
+        <div className="hero-mockup relative lg:-mr-24 xl:-mr-40 opacity-0" onMouseMove={onMove} onMouseLeave={onLeave}>
           <div
             ref={mockupRef}
             className="origin-left rounded-xl border border-border bg-card shadow-2xl shadow-foreground/10 transition-transform duration-300 ease-out will-change-transform lg:[transform:perspective(1600px)_rotateY(-6deg)_rotateX(2deg)]"
           >
-            <MockupWindow pct={pct} />
+            <MockupWindow pct={99.9} />
           </div>
         </div>
       </div>
     </section>
   )
 }
+
 
 function MockupWindow({ pct }: { pct: number }) {
   return (

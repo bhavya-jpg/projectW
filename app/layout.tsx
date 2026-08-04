@@ -2,6 +2,9 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono, Fraunces } from 'next/font/google'
 import './globals.css'
+import { ThemeProvider } from '@/components/theme-provider'
+import { SmoothScroll } from '@/components/smooth-scroll'
+import { BackgroundGlow } from '@/components/background-glow'
 
 const geistSans = Geist({
   subsets: ['latin'],
@@ -43,8 +46,11 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light',
-  themeColor: '#faf8f5',
+  colorScheme: 'light dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#faf8f5' },
+    { media: '(prefers-color-scheme: dark)', color: '#09090b' }
+  ],
 }
 
 export default function RootLayout({
@@ -55,12 +61,24 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`bg-background ${geistSans.variable} ${geistMono.variable} ${fraunces.variable}`}
     >
-      <body className="font-sans antialiased">
-        {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+      <body className="font-sans antialiased relative">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <BackgroundGlow />
+          <SmoothScroll>
+            {children}
+            {process.env.NODE_ENV === 'production' && <Analytics />}
+          </SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   )
 }
+

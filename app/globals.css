@@ -81,6 +81,38 @@
   --ring: oklch(0.55 0.02 60);
 }
 
+.dark {
+  color-scheme: dark;
+  /* Sleek professional dark mode (neutral/cool grays) */
+  --background: oklch(0.14 0.005 285);
+  --foreground: oklch(0.98 0.005 285);
+
+  --card: oklch(0.16 0.005 285);
+  --card-foreground: oklch(0.98 0.005 285);
+
+  --popover: oklch(0.16 0.005 285);
+  --popover-foreground: oklch(0.98 0.005 285);
+
+  --primary: oklch(0.98 0.005 285);
+  --primary-foreground: oklch(0.14 0.005 285);
+
+  --secondary: oklch(0.22 0.005 285);
+  --secondary-foreground: oklch(0.98 0.005 285);
+
+  --muted: oklch(0.22 0.005 285);
+  --muted-foreground: oklch(0.7 0.01 285);
+
+  --accent: oklch(0.22 0.005 285);
+  --accent-foreground: oklch(0.98 0.005 285);
+
+  --destructive: oklch(0.577 0.245 27.325);
+
+  --border: oklch(0.25 0.005 285);
+  --input: oklch(0.25 0.005 285);
+  --ring: oklch(0.35 0.005 285);
+}
+
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -100,18 +132,6 @@
       transparent 1px,
       transparent 11px
     );
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition:
-      opacity 0.7s ease,
-      transform 0.7s ease;
-  }
-  .reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
   }
 
   .no-scrollbar::-webkit-scrollbar {

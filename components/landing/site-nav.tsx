@@ -1,18 +1,42 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Sun, Moon } from 'lucide-react'
+import { useTheme } from 'next-themes'
 import { BrandLogo } from './brand-logo'
 import { cn } from '@/lib/utils'
+import { BOOKING_URL } from '@/lib/config'
 
 const LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Blog', href: '#blog' },
-  { label: 'Changelog', href: '#changelog' },
-  { label: 'Customers', href: '#customers' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '#what-we-do' },
+  { label: 'Solutions', href: '#solutions' },
+  { label: 'Work', href: '#solutions' },
+  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'Contact', href: BOOKING_URL },
 ]
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return <div className="size-9 rounded-md border border-border" />
+  }
+
+  return (
+    <button
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      className="inline-flex size-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-muted"
+      aria-label="Toggle theme"
+    >
+      {theme === 'dark' ? <Sun className="size-4" /> : <Moon className="size-4" />}
+    </button>
+  )
+}
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false)
@@ -54,30 +78,28 @@ export function SiteNav() {
           ))}
         </div>
 
-        <div className="hidden items-center gap-2 sm:flex">
+        <div className="hidden items-center gap-3 sm:flex">
+          <ThemeToggle />
           <a
-            href="#signin"
-            className="inline-flex h-9 items-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-          >
-            Sign in
-          </a>
-          <a
-            href="#get-started"
+            href={BOOKING_URL}
             className="inline-flex h-9 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Get started
+            Book a call
           </a>
         </div>
 
-        <button
-          type="button"
-          className="inline-flex size-9 items-center justify-center rounded-md border border-border text-foreground sm:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
-        </button>
+        <div className="flex items-center gap-3 sm:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            className="inline-flex size-9 items-center justify-center rounded-md border border-border text-foreground"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
+          </button>
+        </div>
       </nav>
 
       {open && (
@@ -96,16 +118,10 @@ export function SiteNav() {
           </div>
           <div className="mt-3 flex flex-col gap-2">
             <a
-              href="#signin"
-              className="inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium"
-            >
-              Sign in
-            </a>
-            <a
-              href="#get-started"
+              href={BOOKING_URL}
               className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground"
             >
-              Get started
+              Book a call
             </a>
           </div>
         </div>

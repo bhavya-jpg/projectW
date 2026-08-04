@@ -1,7 +1,13 @@
 'use client'
 
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, type ReactNode } from 'react'
 import { cn } from '@/lib/utils'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 export function Reveal({
   children,
@@ -15,40 +21,47 @@ export function Reveal({
   as?: 'div' | 'section' | 'li'
 }) {
   const ref = useRef<HTMLElement | null>(null)
-  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
+
     if (
       typeof window !== 'undefined' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
     ) {
-      setVisible(true)
+      gsap.set(el, { opacity: 1, y: 0 })
       return
     }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true)
-            observer.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          delay: delay / 1000,
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        }
+      )
+    }, ref)
+
+    return () => ctx.revert()
+  }, [delay])
 
   const Component = Tag as 'div'
 
   return (
     <Component
       ref={ref as never}
-      className={cn('reveal', visible && 'is-visible', className)}
-      style={{ transitionDelay: `${delay}ms` }}
+      className={cn('will-change-[opacity,transform]', className)}
     >
       {children}
     </Component>
