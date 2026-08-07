@@ -1,27 +1,57 @@
+"use client"
+
 import { Reveal } from './reveal'
-import { COMPANY_LOGOS } from '@/lib/config'
+import { LogoMarquee, Logo } from '@/components/ui/logo-marquee'
+
+const LOGOS: Logo[] = [
+  {
+    src: "https://svgl.app/library/google.svg",
+    alt: "Google",
+  },
+  {
+    src: "/logos/zomato.svg",
+    alt: "Zomato",
+  },
+  {
+    src: "/logos/swiggy.svg",
+    alt: "Swiggy",
+  },
+  {
+    src: "/logos/snapbit.svg",
+    alt: "Snapbit",
+  },
+  {
+    src: "/logos/rapido.svg",
+    alt: "Rapido",
+  },
+  {
+    src: "/logos/snitch.svg",
+    alt: "Snitch",
+  },
+  {
+    src: "/logos/devon.svg",
+    alt: "Devon",
+  },
+  {
+    src: "/logos/drapai.svg",
+    alt: "DrapAI",
+  },
+]
 
 export function LogoWall() {
   return (
-    <section id="logo-wall" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+    <section id="logo-wall" className="w-full py-16 overflow-hidden">
       <Reveal>
-        <p className="text-center text-sm font-semibold tracking-wider text-muted-foreground uppercase mb-8">
+        <p className="text-center text-sm font-semibold tracking-wider text-muted-foreground uppercase mb-10">
           Trusted by teams building the future
         </p>
       </Reveal>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
-        {COMPANY_LOGOS.map((name, i) => (
-          <Reveal key={name} delay={(i % 8) * 50}>
-            <div className="flex h-16 items-center justify-center rounded-xl border border-border bg-card transition-colors hover:bg-muted">
-              <span className="text-sm font-bold tracking-tight text-foreground/70">
-                {name}
-              </span>
-            </div>
-          </Reveal>
-        ))}
-      </div>
+      <Reveal delay={100}>
+        <LogoMarquee logos={LOGOS} />
+      </Reveal>
     </section>
   )
 }
+
 
