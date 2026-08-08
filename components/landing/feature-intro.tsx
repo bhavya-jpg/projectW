@@ -6,6 +6,7 @@ import { Globe, Brain, Workflow, Zap, PhoneCall, TrendingUp } from 'lucide-react
 import { SectionHeader } from './section-header'
 import { Reveal } from './reveal'
 import { SERVICES } from '@/lib/config'
+import { AsciiArt } from '@/components/ui/minimal'
 
 function TypeTester() {
   const [scale, setScale] = useState(1)
@@ -110,16 +111,21 @@ export function FeatureIntro() {
         
         {/* Box 1: AI Brain - Tall (2x2) */}
         <motion.div
-          className="md:col-span-2 md:row-span-2 bg-card border border-border rounded-xl p-6 md:p-8 flex flex-col justify-between hover:border-foreground/30 transition-colors cursor-pointer overflow-hidden group shadow-sm"
+          className="relative md:col-span-2 md:row-span-2 bg-card border border-border rounded-xl p-6 md:p-8 flex flex-col justify-between hover:border-foreground/30 transition-colors cursor-pointer overflow-hidden group shadow-sm"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           whileHover={{ scale: 1.01 }}
         >
-          <div className="flex-1 flex items-center justify-center py-4">
+          {/* ASCII Art background */}
+          <div className="absolute inset-0 pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity z-0">
+            <AsciiArt className="h-full w-full object-cover" />
+          </div>
+
+          <div className="relative z-10 flex-1 flex items-center justify-center py-4">
             <TypeTester />
           </div>
-          <div className="mt-4">
+          <div className="relative z-10 mt-4">
             <h3 className="font-sans text-xl md:text-2xl text-foreground font-semibold flex items-center gap-2.5">
               <Brain className="w-6 h-6 text-primary shrink-0" />
               {aiBrain.title}
@@ -132,17 +138,22 @@ export function FeatureIntro() {
 
         {/* Box 2: Smart CRM Suite - Standard (2x1) */}
         <motion.div
-          className="md:col-span-2 bg-card border border-border rounded-xl p-6 md:p-8 flex flex-col justify-between hover:border-foreground/30 transition-colors cursor-pointer overflow-hidden group shadow-sm"
+          className="relative md:col-span-2 bg-card border border-border rounded-xl p-6 md:p-8 flex flex-col justify-between hover:border-foreground/30 transition-colors cursor-pointer overflow-hidden group shadow-sm"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
           whileHover={{ scale: 0.99 }}
         >
-          <div className="flex-1 flex items-center justify-center py-2">
+          {/* ASCII Art background */}
+          <div className="absolute inset-0 pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity z-0">
+            <AsciiArt className="h-full w-full object-cover" />
+          </div>
+
+          <div className="relative z-10 flex-1 flex items-center justify-center py-2">
             <LayoutAnimation />
           </div>
-          <div className="mt-4">
+          <div className="relative z-10 mt-4">
             <h3 className="font-sans text-xl md:text-2xl text-foreground font-semibold flex items-center gap-2.5">
               <Workflow className="w-6 h-6 text-primary shrink-0" />
               {crmSuite.title}
@@ -155,14 +166,19 @@ export function FeatureIntro() {
 
         {/* Box 3: Referral & Growth Engine - Standard (2x1) */}
         <motion.div
-          className="md:col-span-2 bg-card border border-border rounded-xl p-6 md:p-8 flex flex-col justify-between hover:border-foreground/30 transition-colors cursor-pointer overflow-hidden group shadow-sm"
+          className="relative md:col-span-2 bg-card border border-border rounded-xl p-6 md:p-8 flex flex-col justify-between hover:border-foreground/30 transition-colors cursor-pointer overflow-hidden group shadow-sm"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
           whileHover={{ scale: 0.99 }}
         >
-          <div className="flex items-center gap-2.5 py-1">
+          {/* ASCII Art background */}
+          <div className="absolute inset-0 pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity z-0">
+            <AsciiArt className="h-full w-full object-cover" />
+          </div>
+
+          <div className="relative z-10 flex items-center gap-2.5 py-1">
             <div className="size-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shadow-sm">
               <Zap className="w-6 h-6" />
             </div>
@@ -170,7 +186,7 @@ export function FeatureIntro() {
               <TrendingUp className="w-6 h-6" />
             </div>
           </div>
-          <div className="mt-4">
+          <div className="relative z-10 mt-4">
             <h3 className="font-sans text-xl md:text-2xl text-foreground font-semibold flex items-center gap-2.5">
               {referralEngine.title}
             </h3>
@@ -182,17 +198,22 @@ export function FeatureIntro() {
 
         {/* Box 4: AI Voice Agents - Wide Banner (4x1) */}
         <motion.div
-          className="md:col-span-4 bg-card border border-border rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 hover:border-foreground/30 transition-colors cursor-pointer overflow-hidden group shadow-sm"
+          className="relative md:col-span-4 bg-card border border-border rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 hover:border-foreground/30 transition-colors cursor-pointer overflow-hidden group shadow-sm"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
           whileHover={{ scale: 0.99 }}
         >
-          <div className="w-full md:w-1/3 flex items-center justify-center py-2">
+          {/* ASCII Art background */}
+          <div className="absolute inset-0 pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity z-0">
+            <AsciiArt className="h-full w-full object-cover" />
+          </div>
+
+          <div className="relative z-10 w-full md:w-1/3 flex items-center justify-center py-2">
             <GlobalNetwork />
           </div>
-          <div className="w-full md:w-2/3">
+          <div className="relative z-10 w-full md:w-2/3">
             <h3 className="font-sans text-xl md:text-2xl text-foreground font-semibold flex items-center gap-2.5">
               <PhoneCall className="w-6 h-6 text-primary shrink-0" />
               {voiceAgents.title}
