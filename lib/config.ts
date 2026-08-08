@@ -13,24 +13,59 @@ export const COMPANY_LOGOS = [
 
 export const SERVICES = [
   {
-    title: "Referral & Growth Engine",
-    description: "Turn your happiest customers into your best acquisition channel. Our referral engine lets you launch branded referral and affiliate programs in days, not months — track rewards, automate payouts, and watch word-of-mouth compound into predictable growth, all without writing a line of code.",
-    image: "/services/referral-engine.webp"
-  },
-  {
     title: "Smart CRM Suite",
+    slug: "smart-crm-suite",
+    tag: "CRM & Sales",
     description: "A CRM your sales team will actually use. Manage leads, deals, and customer relationships from one clean dashboard — with automated follow-ups, pipeline visibility, and reporting built in, so nothing slips through the cracks and every rep knows exactly what to do next.",
-    image: "/services/smart-crm.webp"
-  },
-  {
-    title: "AI Voice Agents",
-    description: "Never miss a customer call again. Our voice agents answer, qualify, and route calls around the clock — handling FAQs, booking appointments, and capturing leads in a natural, human-like voice, so your team spends time closing deals instead of picking up the phone.",
-    image: "/services/voice-agents.webp"
+    image: "/services/smart-crm.webp",
+    problem: "Sales teams were struggling with low CRM adoption due to clunky interfaces, leading to poor pipeline visibility and missed follow-ups. Reps spent too much time on manual data entry instead of selling.",
+    solution: "We built a streamlined, AI-enhanced CRM that automates data capture and follow-ups. The dashboard surfaces intelligent next steps for each lead, minimizing manual work and keeping the pipeline moving.",
+    impact: "Increased CRM adoption by 85%, reduced manual data entry by 15 hours per rep per week, and boosted lead-to-close rate by 22%.",
+    industryContext: "In an increasingly competitive sales environment, minimizing friction in tooling is critical to keeping top performers focused on revenue-generating activities."
   },
   {
     title: "AI Brain",
+    slug: "ai-brain",
+    tag: "Knowledge Base",
     description: "Give your business its own intelligent knowledge layer. AI Brain ingests your documents, policies, and data to become an instant expert on your company — answering employee questions, powering support, and surfacing insights on demand, so knowledge is never locked away in someone's inbox.",
-    image: "/services/ai-brain.webp"
+    image: "/services/ai-brain.webp",
+    problem: "Critical company knowledge was scattered across Google Drive, Slack, and email. Employees spent an average of 2 hours a day just searching for information or asking repetitive questions.",
+    solution: "We developed a secure, internal RAG (Retrieval-Augmented Generation) system. By indexing all company documents, the 'AI Brain' acts as an instant expert, answering complex queries with citations.",
+    impact: "Reduced time-to-information by 90% and cut repetitive internal support tickets in half within the first month of deployment.",
+    industryContext: "As organizations scale, tribal knowledge becomes a bottleneck. Centralizing information via an AI layer ensures that every team member can make informed decisions quickly."
+  },
+  {
+    title: "Referral & Growth Engine",
+    slug: "referral-growth-engine",
+    tag: "Growth Automation",
+    description: "Turn your happiest customers into your best acquisition channel. Our referral engine lets you launch branded referral and affiliate programs in days, not months — track rewards, automate payouts, and watch word-of-mouth compound into predictable growth, all without writing a line of code.",
+    image: "/services/referral-engine.webp",
+    problem: "Customer acquisition costs (CAC) were skyrocketing on paid channels, while highly satisfied existing customers had no frictionless way to refer new business and get rewarded.",
+    solution: "We built a white-label referral engine that integrates directly into the client's existing product. It automates tracking, handles multi-tier rewards, and triggers instant payouts upon successful conversions.",
+    impact: "Decreased overall CAC by 35% and drove a 50% increase in qualified inbound leads through organic word-of-mouth.",
+    industryContext: "Shifting reliance from paid ads to organic, community-driven growth is essential for sustainable unit economics in modern SaaS."
+  },
+  {
+    title: "AI Voice Agents",
+    slug: "ai-voice-agents",
+    tag: "Voice AI",
+    description: "Never miss a customer call again. Our voice agents answer, qualify, and route calls around the clock — handling FAQs, booking appointments, and capturing leads in a natural, human-like voice, so your team spends time closing deals instead of picking up the phone.",
+    image: "/services/voice-agents.webp",
+    problem: "Inbound call volume was overwhelming the support staff, leading to long hold times, missed opportunities, and a poor customer experience outside of business hours.",
+    solution: "We deployed a conversational AI voice agent capable of handling concurrent calls. It naturally answers FAQs, qualifies leads based on criteria, and schedules appointments directly into the calendar.",
+    impact: "Achieved 24/7 coverage, handled 10,000+ monthly calls autonomously, and freed up human agents to focus on high-value escalations.",
+    industryContext: "Voice AI is transitioning from basic IVR systems to truly conversational agents, fundamentally changing the cost structure of customer support and inbound sales."
+  },
+  {
+    title: "Coming Soon",
+    slug: "coming-soon",
+    tag: "In Development",
+    description: "We are constantly exploring new AI paradigms to solve complex industry challenges. Stay tuned for our next major platform release.",
+    image: "/services/placeholder.webp",
+    problem: "New challenges require new solutions.",
+    solution: "A cutting-edge product currently in the labs.",
+    impact: "TBD",
+    industryContext: "Innovation never stops."
   }
 ];
 

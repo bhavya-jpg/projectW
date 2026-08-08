@@ -9,7 +9,7 @@ export function SectionHeader({
   action,
   className,
 }: {
-  eyebrow?: string
+  eyebrow?: ReactNode
   title: ReactNode
   subtitle?: ReactNode
   action?: ReactNode
