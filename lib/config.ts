@@ -56,17 +56,6 @@ export const SERVICES = [
     impact: "Achieved 24/7 coverage, handled 10,000+ monthly calls autonomously, and freed up human agents to focus on high-value escalations.",
     industryContext: "Voice AI is transitioning from basic IVR systems to truly conversational agents, fundamentally changing the cost structure of customer support and inbound sales."
   },
-  {
-    title: "Coming Soon",
-    slug: "coming-soon",
-    tag: "In Development",
-    description: "We are constantly exploring new AI paradigms to solve complex industry challenges. Stay tuned for our next major platform release.",
-    image: "/services/placeholder.webp",
-    problem: "New challenges require new solutions.",
-    solution: "A cutting-edge product currently in the labs.",
-    impact: "TBD",
-    industryContext: "Innovation never stops."
-  }
 ];
 
 export const PROJECTS = [

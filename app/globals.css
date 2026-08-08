@@ -46,6 +46,17 @@
       transform: translateX(-50%);
     }
   }
+
+  --animate-waveform: waveform 1.2s ease-in-out infinite;
+
+  @keyframes waveform {
+    0%, 100% {
+      transform: scaleY(0.3);
+    }
+    50% {
+      transform: scaleY(1);
+    }
+  }
 }
 
 :root {
