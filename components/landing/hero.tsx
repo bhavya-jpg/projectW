@@ -2,257 +2,166 @@
 
 import { useRef, useEffect } from 'react'
 import { BOOKING_URL } from '@/lib/config'
-import gsap from 'gsap'
-import {
-  ChevronRight,
-  Search,
-  Plus,
-  BookOpen,
-  Settings,
-  Sparkles,
-  Blocks,
-  Palette,
-  Compass,
-  GitBranch,
-  Globe,
-  Rocket,
-  TerminalSquare,
-  FileCode,
-  Boxes,
-} from 'lucide-react'
-import { BrandMark, BRAND_NAME } from './brand-logo'
+import { ChevronRight } from 'lucide-react'
+import { BrandMark } from './brand-logo'
+import { motion, useInView } from 'framer-motion'
+import { SpecularButton } from '@/components/ui/SpecularButton'
 
-const sidebarPrimary = [
-  { icon: BookOpen, label: 'Quickstart', active: true },
-  { icon: Settings, label: 'Global Settings' },
-  { icon: Sparkles, label: 'AI optimization' },
-  { icon: Blocks, label: 'Components' },
-  { icon: Palette, label: 'Themes' },
-]
-
-const sidebarSecondary = [
-  { icon: Compass, label: 'Navigation' },
-  { icon: GitBranch, label: 'Versioning' },
-  { icon: Globe, label: 'Custom Domain' },
-]
-
-const cards = [
-  { icon: Rocket, title: 'Quickstart', desc: 'Deploy your first workspace in minutes with our step-by-step guide.' },
-  { icon: TerminalSquare, title: 'Installation', desc: 'Install the CLI to preview and develop projects locally.' },
-  { icon: FileCode, title: 'Web editor', desc: 'Draft and publish directly from the browser, no setup needed.' },
-  { icon: Boxes, title: 'Components', desc: 'Compose reusable building blocks across every project.' },
-]
-
-export function Hero() {
-  const mockupRef = useRef<HTMLDivElement | null>(null)
-  const heroRef = useRef<HTMLElement | null>(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.hero-el',
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: 'power3.out',
-        }
-      )
-      gsap.fromTo(
-        '.hero-mockup',
-        { opacity: 0, scale: 0.95 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 1.2,
-          delay: 0.4,
-          ease: 'expo.out',
-        }
-      )
-    }, heroRef)
-
-    return () => ctx.revert()
-  }, [])
-
-  // subtle parallax hover on the mockup
-  function onMove(e: React.MouseEvent<HTMLDivElement>) {
-    const el = mockupRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width - 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5
-    el.style.transform = `perspective(1600px) rotateY(${-6 + x * 4}deg) rotateX(${2 - y * 4}deg) translateY(-2px)`
-  }
-  function onLeave() {
-    const el = mockupRef.current
-    if (el) el.style.transform = 'perspective(1600px) rotateY(-6deg) rotateX(2deg)'
-  }
-
-  return (
-    <section id="top" ref={heroRef} className="relative overflow-hidden">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 pt-16 pb-20 sm:px-6 lg:grid-cols-[1fr_1.05fr] lg:gap-6 lg:px-8 lg:pt-24 lg:pb-28">
-        {/* Left */}
-        <div className="max-w-xl">
-          <div className="hero-el inline-flex items-center gap-2 rounded-md border border-border bg-card px-2 py-1 text-xs font-medium text-muted-foreground">
-            <BrandMark className="size-3.5 text-primary" />
-            <span className="text-foreground">AI-native solutions studio</span>
-            <ChevronRight className="size-3.5" aria-hidden />
-          </div>
-
-          <h1 className="hero-el mt-6 font-serif text-5xl leading-[1.05] font-semibold tracking-tight text-balance text-foreground sm:text-6xl">
-            AI solutions that actually ship.
-          </h1>
-
-          <p className="hero-el mt-5 text-lg leading-relaxed text-muted-foreground">
-            Building custom <span className="font-medium text-foreground">AI-powered</span> web products and solutions for forward-thinking companies.
-          </p>
-
-          <div className="hero-el mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={BOOKING_URL}
-              className="inline-flex h-11 items-center justify-center gap-1.5 rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-            >
-              Book a call
-              <ChevronRight className="size-4" aria-hidden />
-            </a>
-            <a
-              href="#solutions"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-border bg-card px-5 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              See our work
-            </a>
-          </div>
-        </div>
-
-        {/* Right: app mockup */}
-        <div className="hero-mockup relative lg:-mr-24 xl:-mr-40 opacity-0" onMouseMove={onMove} onMouseLeave={onLeave}>
-          <div
-            ref={mockupRef}
-            className="origin-left rounded-xl border border-border bg-card shadow-2xl shadow-foreground/10 transition-transform duration-300 ease-out will-change-transform lg:[transform:perspective(1600px)_rotateY(-6deg)_rotateX(2deg)]"
-          >
-            <MockupWindow pct={99.9} />
-          </div>
-        </div>
-      </div>
-    </section>
-  )
+/* ---------------- WordsPullUp ---------------- */
+interface WordsPullUpProps {
+  text: string
+  className?: string
+  style?: React.CSSProperties
 }
 
+export const WordsPullUp = ({ text, className = '', style }: WordsPullUpProps) => {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true })
+  const words = text.split(' ')
 
-function MockupWindow({ pct }: { pct: number }) {
   return (
-    <div className="flex overflow-hidden rounded-xl">
-      {/* Sidebar */}
-      <aside className="hidden w-56 shrink-0 flex-col gap-4 border-r border-border bg-secondary/40 p-3 sm:flex">
-        <div className="flex items-center gap-2 px-1 py-1">
-          <BrandMark className="size-5 text-primary" />
-          <span className="text-sm font-semibold text-foreground">{BRAND_NAME} AI</span>
-        </div>
-        <button className="flex items-center gap-2 rounded-md bg-primary px-2.5 py-2 text-xs font-medium text-primary-foreground">
-          <Plus className="size-3.5" aria-hidden /> New Session
-        </button>
-        <div className="flex flex-col gap-0.5">
-          {sidebarPrimary.map((item) => (
-            <div
-              key={item.label}
-              className={`flex items-center gap-2 rounded-md px-2.5 py-1.5 text-xs ${
-                item.active
-                  ? 'bg-muted font-medium text-foreground'
-                  : 'text-muted-foreground'
-              }`}
-            >
-              <item.icon className="size-3.5" aria-hidden />
-              {item.label}
-            </div>
-          ))}
-        </div>
-        <div className="mt-1 flex flex-col gap-0.5 border-t border-border pt-3">
-          {sidebarSecondary.map((item) => (
-            <div
-              key={item.label}
-              className="flex items-center gap-2 rounded-md px-2.5 py-1.5 text-xs text-muted-foreground"
-            >
-              <item.icon className="size-3.5" aria-hidden />
-              {item.label}
-            </div>
-          ))}
-        </div>
-      </aside>
-
-      {/* Main */}
-      <div className="min-w-0 flex-1 bg-card">
-        {/* Top bar */}
-        <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-2.5">
-          <div className="flex items-center gap-4 text-xs">
-            <span className="border-b-2 border-primary pb-2.5 font-medium text-foreground">
-              API Reference
-            </span>
-            <span className="pb-2.5 text-muted-foreground">Libraries</span>
-            <span className="pb-2.5 text-muted-foreground">Changelog</span>
-          </div>
-          <div className="hidden items-center gap-2 rounded-md border border-border bg-secondary/50 px-2.5 py-1.5 text-xs text-muted-foreground md:flex">
-            <Search className="size-3.5" aria-hidden />
-            Search or ask
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-4 sm:p-5">
-          <p className="text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
-            Getting Started
-          </p>
-          <h3 className="mt-1 font-serif text-xl font-semibold text-foreground">
-            Quickstart Guide
-          </h3>
-          <p className="mt-1 text-xs text-muted-foreground">
-            Start building an intelligent workspace in under five minutes. Currently at{' '}
-            <span className="font-mono tabular-nums text-foreground">{pct.toFixed(2)}%</span>{' '}
-            coverage.
-          </p>
-
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            {cards.map((card) => (
-              <div
-                key={card.title}
-                className="rounded-lg border border-border bg-background/60 p-3"
-              >
-                <div className="flex size-8 items-center justify-center rounded-md border border-border bg-card text-primary">
-                  <card.icon className="size-4" aria-hidden />
-                </div>
-                <p className="mt-2.5 text-sm font-medium text-foreground">{card.title}</p>
-                <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
-                  {card.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+    <div ref={ref} className={`inline-flex flex-wrap ${className}`} style={style}>
+      {words.map((word, i) => {
+        const isLast = i === words.length - 1
+        return (
+          <motion.span
+            key={i}
+            initial={{ y: 25, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-block relative"
+            style={{ marginRight: isLast ? 0 : '0.25em' }}
+          >
+            {word}
+          </motion.span>
+        )
+      })}
     </div>
   )
 }
 
-function GoogleIcon({ className }: { className?: string }) {
+export function Hero() {
   return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        fill="#4285F4"
-        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1Z"
-      />
-      <path
-        fill="#34A853"
-        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.26 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23Z"
-      />
-      <path
-        fill="#FBBC05"
-        d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84Z"
-      />
-      <path
-        fill="#EA4335"
-        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84C6.71 7.3 9.14 5.38 12 5.38Z"
-      />
-    </svg>
+    <section id="top" className="relative w-full px-4 pt-4 pb-12 sm:px-6 lg:px-8">
+      <div className="relative min-h-[85vh] w-full overflow-hidden rounded-2xl md:rounded-[2rem] border border-border shadow-2xl flex flex-col justify-between p-6 sm:p-10 lg:p-14">
+        
+        {/* Background video from provided component */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_171521_25968ba2-b594-4b32-aab7-f6b69398a6fa.mp4"
+        />
+
+        {/* Noise overlay */}
+        <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.4] mix-blend-overlay" />
+
+        {/* Gradient overlay */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/85" />
+
+        {/* Top Tag / Pill */}
+        <div className="relative z-10 self-start">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 backdrop-blur-md px-3.5 py-1.5 text-xs font-medium text-white/90"
+          >
+            <BrandMark className="size-3.5 text-white" />
+            <span>We are live, Launching Very Soon</span>
+            <ChevronRight className="size-3.5 text-white/60" aria-hidden />
+          </motion.div>
+        </div>
+
+        {/* Main Content Area (Layout inspired by NEXORA reference design) */}
+        <div className="relative z-10 my-auto pt-10 pb-8 flex flex-col justify-between min-h-[60vh]">
+          
+          {/* Main Headline & Action Buttons (Positioned on the Left middle-upper) */}
+          <div className="max-w-2xl">
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-light tracking-[-0.04em] leading-[1.05] text-white mb-4">
+              <span className="block font-sans">
+                <WordsPullUp text="AI solutions" />
+              </span>
+              <span className="block text-white/70 font-sans font-normal">
+                <WordsPullUp text="that actually ship." />
+              </span>
+            </h1>
+
+            {/* CTAs directly under title (like NEXORA reference buttons) */}
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-8 flex flex-wrap items-center gap-4"
+            >
+              <SpecularButton
+                href={BOOKING_URL}
+                size="md"
+                radius={9999}
+                tint="#ffffff"
+                tintOpacity={0.15}
+                blur={12}
+                textColor="#ffffff"
+                lineColor="#ffffff"
+                baseColor="#888888"
+                intensity={1.5}
+                shineSize={15}
+                shineFade={40}
+                thickness={2}
+                speed={0.4}
+                followMouse
+                proximity={300}
+                autoAnimate
+              >
+                Book a call
+                <ChevronRight className="size-4" aria-hidden />
+              </SpecularButton>
+
+              <a
+                href="#solutions"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-medium text-white/80 transition-colors hover:text-white"
+              >
+                See our work
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Bottom Row: Description aligned bottom-center + scroll indicator bottom-right */}
+          <div className="mt-16 grid grid-cols-12 items-end gap-4">
+            
+            {/* Tagline / micro copy bottom-left */}
+            <div className="col-span-12 md:col-span-3 text-xs text-white/50 tracking-wider">
+              AI-native solutions studio
+            </div>
+
+            {/* Center paragraph (like NEXORA reference description at bottom) */}
+            <div className="col-span-12 md:col-span-6 text-center">
+              <motion.p
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="mx-auto max-w-md text-sm text-white/75 sm:text-base leading-relaxed"
+              >
+                Building custom <span className="font-semibold text-white">AI-powered</span> web products and solutions for forward-thinking companies.
+              </motion.p>
+            </div>
+
+            {/* Bottom-right scroll prompt */}
+            <div className="col-span-12 md:col-span-3 text-right hidden md:block">
+              <a
+                href="#solutions"
+                className="text-xs text-white/50 tracking-widest hover:text-white transition-colors uppercase"
+              >
+                [Scroll to Explore]
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
   )
 }

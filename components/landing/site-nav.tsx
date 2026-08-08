@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes'
 import { BrandLogo } from './brand-logo'
 import { cn } from '@/lib/utils'
 import { BOOKING_URL } from '@/lib/config'
+import { SpecularButton } from '@/components/ui/SpecularButton'
 
 const LINKS = [
   { label: 'About', href: '#what-we-do' },
@@ -41,13 +42,19 @@ function ThemeToggle() {
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const { theme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     const onScroll = () => setScrolled(window.scrollY > 8)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const currentTheme = mounted ? (resolvedTheme || theme) : 'dark'
+  const isDark = currentTheme === 'dark'
 
   return (
     <header
@@ -80,12 +87,27 @@ export function SiteNav() {
 
         <div className="hidden items-center gap-3 sm:flex">
           <ThemeToggle />
-          <a
+          <SpecularButton
             href={BOOKING_URL}
-            className="inline-flex h-9 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            size="sm"
+            radius={8}
+            tint={isDark ? '#ffffff' : '#0c0c0c'}
+            tintOpacity={isDark ? 0.1 : 0.9}
+            blur={8}
+            textColor="#ffffff"
+            lineColor={isDark ? '#ffffff' : '#0c0c0c'}
+            baseColor={isDark ? '#525252' : '#1c1917'}
+            intensity={1.2}
+            shineSize={12}
+            shineFade={35}
+            thickness={1.5}
+            speed={0.35}
+            followMouse
+            proximity={250}
+            autoAnimate
           >
             Book a call
-          </a>
+          </SpecularButton>
         </div>
 
         <div className="flex items-center gap-3 sm:hidden">
@@ -117,12 +139,28 @@ export function SiteNav() {
             ))}
           </div>
           <div className="mt-3 flex flex-col gap-2">
-            <a
+            <SpecularButton
               href={BOOKING_URL}
-              className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground"
+              size="sm"
+              radius={8}
+              tint={isDark ? '#ffffff' : '#0c0c0c'}
+              tintOpacity={isDark ? 0.1 : 0.9}
+              blur={8}
+              textColor="#ffffff"
+              lineColor={isDark ? '#ffffff' : '#0c0c0c'}
+              baseColor={isDark ? '#525252' : '#1c1917'}
+              intensity={1.2}
+              shineSize={12}
+              shineFade={35}
+              thickness={1.5}
+              speed={0.35}
+              followMouse
+              proximity={250}
+              autoAnimate
+              className="w-full justify-center"
             >
               Book a call
-            </a>
+            </SpecularButton>
           </div>
         </div>
       )}

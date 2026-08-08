@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 /**
  * BRAND: change the name here and the mark below to rebrand the whole site.
  */
-export const BRAND_NAME = 'Agency'
+export const BRAND_NAME = 'deWork Labs'
 
 export function BrandMark({ className }: { className?: string }) {
   return (

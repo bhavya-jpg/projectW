@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono, Fraunces } from 'next/font/google'
+import { Geist, Geist_Mono, Fraunces, Montserrat, Space_Grotesk, Urbanist } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SmoothScroll } from '@/components/smooth-scroll'
@@ -21,8 +21,26 @@ const fraunces = Fraunces({
   variable: '--font-fraunces',
 })
 
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  weight: ['300', '400', '500', '600', '700'],
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  weight: ['300', '400', '500', '600', '700'],
+})
+
+const urbanist = Urbanist({
+  subsets: ['latin'],
+  variable: '--font-urbanist',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+})
+
 export const metadata: Metadata = {
-  title: 'Agency Name — The AI-native workspace for teams building what comes next',
+  title: 'deWork Labs — The AI-native workspace for teams building what comes next',
   description:
     'Bring issues, projects, docs, and AI agents into one focused workspace. Plan projects, track issues, and let AI agents keep every workflow moving.',
   generator: 'v0.app',
@@ -62,7 +80,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`bg-background ${geistSans.variable} ${geistMono.variable} ${fraunces.variable}`}
+      className={`bg-background ${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${montserrat.variable} ${spaceGrotesk.variable} ${urbanist.variable}`}
     >
       <body className="font-sans antialiased relative">
         <ThemeProvider

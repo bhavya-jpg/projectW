@@ -13,20 +13,24 @@ export const COMPANY_LOGOS = [
 
 export const SERVICES = [
   {
-    title: "AI Product Development",
-    description: "Building custom AI-powered web products from scratch."
+    title: "Referral & Growth Engine",
+    description: "Turn your happiest customers into your best acquisition channel. Our referral engine lets you launch branded referral and affiliate programs in days, not months — track rewards, automate payouts, and watch word-of-mouth compound into predictable growth, all without writing a line of code.",
+    image: "/services/referral-engine.webp"
   },
   {
-    title: "Workflow Automation",
-    description: "AI agents and automation pipelines for business ops."
+    title: "Smart CRM Suite",
+    description: "A CRM your sales team will actually use. Manage leads, deals, and customer relationships from one clean dashboard — with automated follow-ups, pipeline visibility, and reporting built in, so nothing slips through the cracks and every rep knows exactly what to do next.",
+    image: "/services/smart-crm.webp"
   },
   {
-    title: "AI Integration",
-    description: "Embedding AI capabilities into existing products/platforms."
+    title: "AI Voice Agents",
+    description: "Never miss a customer call again. Our voice agents answer, qualify, and route calls around the clock — handling FAQs, booking appointments, and capturing leads in a natural, human-like voice, so your team spends time closing deals instead of picking up the phone.",
+    image: "/services/voice-agents.webp"
   },
   {
-    title: "Rapid Prototyping",
-    description: "From idea to working AI demo in weeks, not months."
+    title: "AI Brain",
+    description: "Give your business its own intelligent knowledge layer. AI Brain ingests your documents, policies, and data to become an instant expert on your company — answering employee questions, powering support, and surfacing insights on demand, so knowledge is never locked away in someone's inbox.",
+    image: "/services/ai-brain.webp"
   }
 ];
 
@@ -59,43 +63,43 @@ export const TESTIMONIALS = [
     name: "Sarah Jenkins",
     role: "Product Manager",
     company: "Zomato",
-    quote: "[PLACEHOLDER] The AI integration they delivered completely transformed how we handle customer requests. Incredibly fast turnaround.",
-    avatar: "/avatars/avatar-1.webp"
+    quote: "The AI integration they delivered completely transformed how we handle customer requests. Incredibly fast turnaround.",
+    avatar: "/avatars/a1.png"
   },
   {
     name: "Mark T.",
     role: "CTO",
     company: "Swiggy",
-    quote: "[PLACEHOLDER] True professionals who understand both the bleeding-edge AI models and how to build scalable web architecture.",
-    avatar: "/avatars/avatar-2.webp"
+    quote: "True professionals who understand both the bleeding-edge AI models and how to build scalable web architecture.",
+    avatar: "/avatars/a2.png"
   },
   {
     name: "Elena Rodriguez",
     role: "Founder",
     company: "Snapbit",
-    quote: "[PLACEHOLDER] We went from a rough concept to a working MVP in less than a month. Highly recommended team.",
-    avatar: "/avatars/avatar-3.webp"
+    quote: "We went from a rough concept to a working MVP in less than a month. Highly recommended team.",
+    avatar: "/avatars/a3.png"
   },
   {
     name: "David Kim",
     role: "Head of Engineering",
     company: "Rapido",
-    quote: "[PLACEHOLDER] Their automated workflow pipeline saved us hundreds of hours of manual operations work.",
-    avatar: "/avatars/avatar-4.webp"
+    quote: "Their automated workflow pipeline saved us hundreds of hours of manual operations work.",
+    avatar: "/avatars/a4.png"
   },
   {
     name: "Amanda Chen",
     role: "VP Operations",
     company: "Snitch",
-    quote: "[PLACEHOLDER] Outstanding partner for our AI initiatives. They don't just write code, they help shape the product strategy.",
-    avatar: "/avatars/avatar-5.webp"
+    quote: "Outstanding partner for our AI initiatives. They don't just write code, they help shape the product strategy.",
+    avatar: "/avatars/a5.png"
   },
   {
     name: "James Wilson",
     role: "CEO",
     company: "Devon",
-    quote: "[PLACEHOLDER] They delivered exactly what we needed to secure our next round of funding. Exceptional quality.",
-    avatar: "/avatars/avatar-6.webp"
+    quote: "They delivered exactly what we needed to secure our next round of funding. Exceptional quality.",
+    avatar: "/avatars/a6.png"
   }
 ];
 
