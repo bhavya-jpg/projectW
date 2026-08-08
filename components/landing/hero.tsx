@@ -41,18 +41,46 @@ export const WordsPullUp = ({ text, className = '', style }: WordsPullUpProps) =
 }
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const handleTimeUpdate = () => {
+      // Loop seamlessly right before the video ends to avoid native player freeze/pause
+      if (video.duration && video.currentTime >= video.duration - 0.1) {
+        video.currentTime = 0.001
+      }
+    }
+
+    const handleEnded = () => {
+      video.currentTime = 0.001
+      video.play().catch(() => {})
+    }
+
+    video.addEventListener('timeupdate', handleTimeUpdate)
+    video.addEventListener('ended', handleEnded)
+
+    return () => {
+      video.removeEventListener('timeupdate', handleTimeUpdate)
+      video.removeEventListener('ended', handleEnded)
+    }
+  }, [])
+
   return (
     <section id="top" className="relative w-full px-4 pt-4 pb-12 sm:px-6 lg:px-8">
       <div className="relative min-h-[85vh] w-full overflow-hidden rounded-2xl md:rounded-[2rem] border border-border shadow-2xl flex flex-col justify-between p-6 sm:p-10 lg:p-14">
         
-        {/* Background video from provided component */}
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
           className="absolute inset-0 h-full w-full object-cover"
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_171521_25968ba2-b594-4b32-aab7-f6b69398a6fa.mp4"
+          src="https://res.cloudinary.com/qdfiwwkf/video/upload/v1786190053/nature_boy_laptop_final_video_flnxpe.mp4"
         />
 
         {/* Noise overlay */}
@@ -78,18 +106,18 @@ export function Hero() {
         {/* Main Content Area (Layout inspired by NEXORA reference design) */}
         <div className="relative z-10 my-auto pt-10 pb-8 flex flex-col justify-between min-h-[60vh]">
           
-          {/* Main Headline & Action Buttons (Positioned on the Left middle-upper) */}
-          <div className="max-w-2xl">
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-light tracking-[-0.04em] leading-[1.05] text-white mb-4">
+          {/* Main Headline & Action Buttons */}
+          <div className="max-w-4xl">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-light tracking-[-0.04em] leading-[1.05] text-white mb-6">
               <span className="block font-sans">
-                <WordsPullUp text="AI solutions" />
+                <WordsPullUp text="Discover the way" />
               </span>
               <span className="block text-white/70 font-sans font-normal">
-                <WordsPullUp text="that actually ship." />
+                <WordsPullUp text="enterprises should work." />
               </span>
             </h1>
 
-            {/* CTAs directly under title (like NEXORA reference buttons) */}
+            {/* CTAs directly under title */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
