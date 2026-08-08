@@ -35,22 +35,21 @@ export function Reveal({
     }
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          delay: delay / 1000,
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      )
+      gsap.set(el, { opacity: 0, y: 24 })
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+        delay: delay / 1000,
+        force3D: true,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 92%',
+          toggleActions: 'play none none none',
+          once: true,
+        },
+      })
     }, ref)
 
     return () => ctx.revert()
@@ -61,7 +60,7 @@ export function Reveal({
   return (
     <Component
       ref={ref as never}
-      className={cn('will-change-[opacity,transform]', className)}
+      className={cn('transform-gpu', className)}
     >
       {children}
     </Component>

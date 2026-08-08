@@ -23,7 +23,9 @@ export default function Page() {
         </div>
         <Testimonials />
         <Faq />
-        <CtaBanner />
+        <div id="contact">
+          <CtaBanner />
+        </div>
       </main>
       <SiteFooter />
     </div>
