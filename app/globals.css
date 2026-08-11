@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
@@ -25,9 +25,9 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-sans: var(--font-urbanist), 'Urbanist', var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-urbanist), 'Urbanist', var(--font-fraunces), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-urbanist), 'Urbanist', sans-serif;
+  --font-serif: var(--font-urbanist), 'Urbanist', sans-serif;
+  --font-mono: var(--font-urbanist), 'Urbanist', sans-serif;
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -124,17 +124,24 @@
   --ring: oklch(0.35 0.005 285);
 }
 
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground font-sans;
-  }
-  h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-urbanist), 'Urbanist', sans-serif;
   }
+  html, body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-urbanist), 'Urbanist', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea, label, li, code, pre {
+    font-family: var(--font-urbanist), 'Urbanist', sans-serif;
+  }
+}
+
+.urbanist-text {
+  font-family: "Urbanist", var(--font-urbanist), sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 @layer utilities {

@@ -80,8 +80,16 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`bg-background ${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${montserrat.variable} ${spaceGrotesk.variable} ${urbanist.variable}`}
+      className={`bg-background ${urbanist.variable} ${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${montserrat.variable} ${spaceGrotesk.variable}`}
     >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="font-sans antialiased relative">
         <ThemeProvider
           attribute="class"
