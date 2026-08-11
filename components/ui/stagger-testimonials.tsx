@@ -1,7 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 
 const SQRT_5000 = Math.sqrt(5000);
@@ -155,7 +154,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     <div
       onClick={() => handleMove(position)}
       className={cn(
-        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out select-none",
+        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] select-none",
         isCenter 
           ? "z-10 bg-primary text-primary-foreground border-primary" 
           : "z-0 bg-card text-card-foreground border-border hover:border-primary/50"
@@ -220,23 +219,33 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ items 
     }
   }, [items]);
 
-  const handleMove = (steps: number) => {
-    const newList = [...testimonialsList];
-    if (steps > 0) {
-      for (let i = steps; i > 0; i--) {
-        const item = newList.shift();
-        if (!item) return;
-        newList.push({ ...item, tempId: Math.random() });
+  const handleMove = useCallback((steps: number) => {
+    setTestimonialsList((prevList) => {
+      const newList = [...prevList];
+      if (steps > 0) {
+        for (let i = steps; i > 0; i--) {
+          const item = newList.shift();
+          if (!item) return prevList;
+          newList.push({ ...item, tempId: Math.random() });
+        }
+      } else {
+        for (let i = steps; i < 0; i++) {
+          const item = newList.pop();
+          if (!item) return prevList;
+          newList.unshift({ ...item, tempId: Math.random() });
+        }
       }
-    } else {
-      for (let i = steps; i < 0; i++) {
-        const item = newList.pop();
-        if (!item) return;
-        newList.unshift({ ...item, tempId: Math.random() });
-      }
-    }
-    setTestimonialsList(newList);
-  };
+      return newList;
+    });
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleMove(1);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [handleMove]);
 
   useEffect(() => {
     const updateSize = () => {
@@ -268,30 +277,6 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ items 
           />
         );
       })}
-      <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-3 z-20">
-        <button
-          onClick={() => handleMove(-1)}
-          className={cn(
-            "flex h-12 w-12 items-center justify-center text-xl transition-all rounded-lg",
-            "bg-background border-2 border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary shadow-sm",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          )}
-          aria-label="Previous testimonial"
-        >
-          <ChevronLeft className="h-6 w-6" />
-        </button>
-        <button
-          onClick={() => handleMove(1)}
-          className={cn(
-            "flex h-12 w-12 items-center justify-center text-xl transition-all rounded-lg",
-            "bg-background border-2 border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary shadow-sm",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          )}
-          aria-label="Next testimonial"
-        >
-          <ChevronRight className="h-6 w-6" />
-        </button>
-      </div>
     </div>
   );
 };

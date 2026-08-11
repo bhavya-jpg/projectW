@@ -1,10 +1,9 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { BOOKING_URL } from '@/lib/config'
 import { ChevronRight } from 'lucide-react'
-import { BrandMark } from './brand-logo'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { SpecularButton } from '@/components/ui/SpecularButton'
 
 /* ---------------- WordsPullUp ---------------- */
@@ -37,6 +36,37 @@ export const WordsPullUp = ({ text, className = '', style }: WordsPullUpProps) =
         )
       })}
     </div>
+  )
+}
+
+/* ---------------- WordCycler ---------------- */
+const CYCLIC_WORDS = ['work', 'Companies', 'scale', 'build', 'function']
+
+export const WordCycler = () => {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % CYCLIC_WORDS.length)
+    }, 2000)
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <span className="inline-block relative">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={CYCLIC_WORDS[index]}
+          initial={{ y: 10, opacity: 0, filter: 'blur(5px)' }}
+          animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+          exit={{ y: -10, opacity: 0, filter: 'blur(5px)' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block relative text-white italic border-b-2 border-white/35 pb-0.5 sm:pb-1"
+        >
+          {CYCLIC_WORDS[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
   )
 }
 
@@ -89,20 +119,6 @@ export function Hero() {
         {/* Gradient overlay */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/85" />
 
-        {/* Top Tag / Pill */}
-        <div className="relative z-10 self-start">
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 backdrop-blur-md px-3.5 py-1.5 text-xs font-medium text-white/90"
-          >
-            <BrandMark className="size-3.5 text-white" />
-            <span>We are live, Launching Very Soon</span>
-            <ChevronRight className="size-3.5 text-white/60" aria-hidden />
-          </motion.div>
-        </div>
-
         {/* Main Content Area (Layout inspired by NEXORA reference design) */}
         <div className="relative z-10 my-auto pt-10 pb-8 flex flex-col justify-between min-h-[60vh]">
           
@@ -113,7 +129,7 @@ export function Hero() {
                 <WordsPullUp text="Discover the way" />
               </span>
               <span className="block text-white/70 font-sans font-normal">
-                <WordsPullUp text="enterprises should work." />
+                <WordsPullUp text="enterprises should" /> <WordCycler />
               </span>
             </h1>
 
