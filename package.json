@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
+    "@dagrejs/dagre": "^3.1.1",
     "@gsap/react": "^2.1.2",
     "@phosphor-icons/react": "^2.1.10",
+    "@types/dagre": "^0.7.54",
     "@vercel/analytics": "1.6.1",
+    "@xyflow/react": "^12.11.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^13.0.0",

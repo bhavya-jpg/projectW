@@ -17,7 +17,7 @@ export function SiteFooter() {
       <AsciiVignetteBloomBackground />
 
       {/* Footer Content Container */}
-      <div className="relative z-10 mx-auto max-w-[1800px] px-6 pt-12 pb-4 sm:px-10 sm:pt-16 lg:px-16 lg:pt-20">
+      <div className="relative z-10 mx-auto max-w-[1800px] px-6 pt-8 pb-4 sm:px-10 sm:pt-16 lg:px-16 lg:pt-20">
         
         {/* Top Grid: Left (Tagline & Button) | Right (Nav & Socials) */}
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
@@ -72,7 +72,7 @@ export function SiteFooter() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.25, ease: [0.215, 0.61, 0.355, 1] }}
-          className="mt-24 grid grid-cols-1 gap-6 text-sm text-[#f4f4f0] md:grid-cols-12"
+          className="mt-12 sm:mt-24 grid grid-cols-1 gap-6 text-sm text-[#f4f4f0] md:grid-cols-12"
         >
           {/* Locations */}
           <div className="space-y-1 md:col-span-6 lg:col-span-7">

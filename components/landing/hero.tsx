@@ -40,7 +40,7 @@ export const WordsPullUp = ({ text, className = '', style }: WordsPullUpProps) =
 }
 
 /* ---------------- WordCycler ---------------- */
-const CYCLIC_WORDS = ['work', 'Companies', 'scale', 'build', 'function']
+const CYCLIC_WORDS = ['work', 'Automate', 'scale', 'build', 'function']
 
 export const WordCycler = () => {
   const [index, setIndex] = useState(0)
@@ -99,8 +99,8 @@ export function Hero() {
   }, [])
 
   return (
-    <section id="top" className="relative w-full px-4 pt-4 pb-12 sm:px-6 lg:px-8">
-      <div className="relative min-h-[85vh] w-full overflow-hidden rounded-2xl md:rounded-[2rem] border border-border shadow-2xl flex flex-col justify-between p-6 sm:p-10 lg:p-14">
+    <section id="top" className="relative w-full px-4 pt-4 pb-6 sm:pb-12 sm:px-6 lg:px-8">
+      <div className="relative min-h-[70vh] sm:min-h-[85vh] w-full overflow-hidden rounded-2xl md:rounded-[2rem] border border-border shadow-2xl flex flex-col justify-between p-6 sm:p-10 lg:p-14">
         
         <video
           ref={videoRef}
@@ -120,7 +120,7 @@ export function Hero() {
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/85" />
 
         {/* Main Content Area (Layout inspired by NEXORA reference design) */}
-        <div className="relative z-10 my-auto pt-10 pb-8 flex flex-col justify-between min-h-[60vh]">
+        <div className="relative z-10 my-auto pt-6 sm:pt-10 pb-6 sm:pb-8 flex flex-col justify-between min-h-[50vh] sm:min-h-[60vh]">
           
           {/* Main Headline & Action Buttons */}
           <div className="max-w-4xl">
@@ -173,7 +173,7 @@ export function Hero() {
           </div>
 
           {/* Bottom Row: Description aligned bottom-center + scroll indicator bottom-right */}
-          <div className="mt-16 grid grid-cols-12 items-end gap-4">
+          <div className="mt-8 sm:mt-16 grid grid-cols-12 items-end gap-4">
             
             {/* Tagline / micro copy bottom-left */}
             <div className="col-span-12 md:col-span-3 text-xs text-white/50 tracking-wider">
@@ -188,7 +188,7 @@ export function Hero() {
                 transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className="mx-auto max-w-md text-sm text-white/75 sm:text-base leading-relaxed"
               >
-                Building custom <span className="font-semibold text-white">AI-powered</span> web products and solutions for forward-thinking companies.
+                Custom <span className="font-semibold text-white">AI solutions</span> that move your business forward — not just talk about it.
               </motion.p>
             </div>
 

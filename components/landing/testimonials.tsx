@@ -14,7 +14,7 @@ export function Testimonials() {
   }))
 
   return (
-    <section id="testimonials" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+    <section id="testimonials" className="mx-auto max-w-7xl px-4 py-10 sm:py-20 md:py-24 lg:px-8">
       <Reveal>
         <SectionHeader
           title="What our partners say."
@@ -22,7 +22,7 @@ export function Testimonials() {
         />
       </Reveal>
 
-      <div className="mt-10">
+      <div className="mt-6 sm:mt-10">
         <StaggerTestimonials items={formattedTestimonials} />
       </div>
     </section>

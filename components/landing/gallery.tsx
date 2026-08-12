@@ -17,7 +17,7 @@ const ITEMS = [
 export function Gallery() {
   const scrollerRef = useScroller()
   return (
-    <section id="blog" className="py-24">
+    <section id="blog" className="py-10 sm:py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeader

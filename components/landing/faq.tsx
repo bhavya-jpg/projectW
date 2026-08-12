@@ -11,9 +11,9 @@ export function Faq() {
   const [open, setOpen] = useState(0)
 
   return (
-    <section id="faq" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+    <section id="faq" className="mx-auto max-w-7xl px-4 py-10 sm:py-20 md:py-24 lg:px-8">
       <Reveal>
-        <div className="flex flex-col gap-6 border-b border-border pb-10 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-4 sm:gap-6 border-b border-border pb-6 sm:pb-10 md:flex-row md:items-end md:justify-between">
           <h2 className="font-serif text-4xl leading-[1.08] font-semibold tracking-tight text-balance text-foreground sm:text-5xl">
             Frequently asked questions.{' '}
             <span className="text-muted-foreground">
@@ -32,7 +32,7 @@ export function Faq() {
                 type="button"
                 onClick={() => setOpen(isOpen ? -1 : i)}
                 aria-expanded={isOpen}
-                className="flex w-full items-center justify-between gap-4 py-6 text-left"
+                className="flex w-full items-center justify-between gap-4 py-4 sm:py-6 text-left"
               >
                 <span className="text-lg font-medium text-foreground">{item.question}</span>
                 {isOpen ? (

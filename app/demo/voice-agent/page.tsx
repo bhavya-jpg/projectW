@@ -82,9 +82,9 @@ export default function VoiceAgentDemoPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col pt-24 pb-12">
+    <div className="min-h-screen bg-background flex flex-col pt-20 sm:pt-24 pb-8 sm:pb-12">
       {/* Header */}
-      <header className="w-full max-w-4xl mx-auto px-4 mb-12">
+      <header className="w-full max-w-4xl mx-auto px-4 mb-6 sm:mb-12">
         <Link href="/#solutions" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
           <ArrowLeft className="w-4 h-4" />
           Back to Portfolio
@@ -231,7 +231,7 @@ export default function VoiceAgentDemoPage() {
       </main>
 
       {/* Educational Section */}
-      <section className="w-full max-w-4xl mx-auto px-4 mt-16 pt-12 border-t border-border/50 text-center">
+      <section className="w-full max-w-4xl mx-auto px-4 mt-10 sm:mt-16 pt-8 sm:pt-12 border-t border-border/50 text-center">
         <h2 className="text-2xl font-bold mb-4">Ready for production.</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
           This is the same agent our clients use to qualify and book hot leads automatically, 24/7. It connects directly to your calendar, CRM, and knowledge base.
