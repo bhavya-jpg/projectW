@@ -40,7 +40,7 @@ export const WordsPullUp = ({ text, className = '', style }: WordsPullUpProps) =
 }
 
 /* ---------------- WordCycler ---------------- */
-const CYCLIC_WORDS = ['work', 'Automate', 'scale', 'build', 'function']
+const CYCLIC_WORDS = ['work', 'automate', 'scale', 'build', 'function']
 
 export const WordCycler = () => {
   const [index, setIndex] = useState(0)

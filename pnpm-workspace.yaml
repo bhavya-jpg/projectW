@@ -1,5 +1,8 @@
 allowBuilds:
   msw: true
   sharp: true
+minimumReleaseAgeExclude:
+  - '@xyflow/react@12.11.3'
+  - '@xyflow/system@0.0.80'
 overrides:
   hono: "4.12.25"
