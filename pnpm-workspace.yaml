@@ -1,6 +1,8 @@
 allowBuilds:
   msw: true
+  node: set this to true or false
   sharp: true
+  speaker: set this to true or false
 minimumReleaseAgeExclude:
   - '@xyflow/react@12.11.3'
   - '@xyflow/system@0.0.80'

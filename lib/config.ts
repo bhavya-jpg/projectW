@@ -13,6 +13,28 @@ export const COMPANY_LOGOS = [
 
 export const SERVICES = [
   {
+    title: "AI Voice Agents",
+    slug: "ai-voice-agents",
+    tag: "Voice AI",
+    description: "Never miss a customer call again. Our voice agents answer, qualify, and route calls around the clock — handling FAQs, booking appointments, and capturing leads in a natural, human-like voice, so your team spends time closing deals instead of picking up the phone.",
+    image: "/services/voice-agents.webp",
+    problem: "Inbound call volume was overwhelming the support staff, leading to long hold times, missed opportunities, and a poor customer experience outside of business hours.",
+    solution: "We deployed a conversational AI voice agent capable of handling concurrent calls. It naturally answers FAQs, qualifies leads based on criteria, and schedules appointments directly into the calendar.",
+    impact: "Achieved 24/7 coverage, handled 10,000+ monthly calls autonomously, and freed up human agents to focus on high-value escalations.",
+    industryContext: "Voice AI is transitioning from basic IVR systems to truly conversational agents, fundamentally changing the cost structure of customer support and inbound sales."
+  },
+  {
+    title: "Drape AI",
+    slug: "drape-ai",
+    tag: "Fashion AI",
+    description: "Generate fashion studio-level model shoots instantly.",
+    image: "/services/drape-ai.webp",
+    problem: "Traditional fashion model photoshoots are highly expensive, time-consuming, and logistically complex to organize.",
+    solution: "We built a Fashion AI studio that takes standard model and clothing photos, allowing you to generate studio-quality, ultra-realistic fashion shoots with fully customizable poses.",
+    impact: "Replaced highly expensive photoshoots, cutting content production costs by over 90% while accelerating time-to-market for new clothing collections.",
+    industryContext: "AI is revolutionizing the fashion and e-commerce industries by digitizing content creation and reducing reliance on physical shoots."
+  },
+  {
     title: "Smart CRM Suite",
     slug: "smart-crm-suite",
     tag: "CRM & Sales",
@@ -33,29 +55,7 @@ export const SERVICES = [
     solution: "We developed a secure, internal RAG (Retrieval-Augmented Generation) system. By indexing all company documents, the 'AI Brain' acts as an instant expert, answering complex queries with citations.",
     impact: "Reduced time-to-information by 90% and cut repetitive internal support tickets in half within the first month of deployment.",
     industryContext: "As organizations scale, tribal knowledge becomes a bottleneck. Centralizing information via an AI layer ensures that every team member can make informed decisions quickly."
-  },
-  {
-    title: "Referral & Growth Engine",
-    slug: "referral-growth-engine",
-    tag: "Growth Automation",
-    description: "Turn your happiest customers into your best acquisition channel. Our referral engine lets you launch branded referral and affiliate programs in days, not months — track rewards, automate payouts, and watch word-of-mouth compound into predictable growth, all without writing a line of code.",
-    image: "/services/referral-engine.webp",
-    problem: "Customer acquisition costs (CAC) were skyrocketing on paid channels, while highly satisfied existing customers had no frictionless way to refer new business and get rewarded.",
-    solution: "We built a white-label referral engine that integrates directly into the client's existing product. It automates tracking, handles multi-tier rewards, and triggers instant payouts upon successful conversions.",
-    impact: "Decreased overall CAC by 35% and drove a 50% increase in qualified inbound leads through organic word-of-mouth.",
-    industryContext: "Shifting reliance from paid ads to organic, community-driven growth is essential for sustainable unit economics in modern SaaS."
-  },
-  {
-    title: "AI Voice Agents",
-    slug: "ai-voice-agents",
-    tag: "Voice AI",
-    description: "Never miss a customer call again. Our voice agents answer, qualify, and route calls around the clock — handling FAQs, booking appointments, and capturing leads in a natural, human-like voice, so your team spends time closing deals instead of picking up the phone.",
-    image: "/services/voice-agents.webp",
-    problem: "Inbound call volume was overwhelming the support staff, leading to long hold times, missed opportunities, and a poor customer experience outside of business hours.",
-    solution: "We deployed a conversational AI voice agent capable of handling concurrent calls. It naturally answers FAQs, qualifies leads based on criteria, and schedules appointments directly into the calendar.",
-    impact: "Achieved 24/7 coverage, handled 10,000+ monthly calls autonomously, and freed up human agents to focus on high-value escalations.",
-    industryContext: "Voice AI is transitioning from basic IVR systems to truly conversational agents, fundamentally changing the cost structure of customer support and inbound sales."
-  },
+  }
 ];
 
 export const PROJECTS = [

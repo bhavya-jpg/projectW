@@ -14,15 +14,14 @@ export function Testimonials() {
   }))
 
   return (
-    <section id="testimonials" className="mx-auto max-w-7xl px-4 py-10 sm:py-20 md:py-24 lg:px-8">
+    <section id="testimonials" className="mx-auto max-w-7xl px-4 py-6 sm:py-12 md:py-16 lg:px-8">
       <Reveal>
         <SectionHeader
-          title="What our partners say."
-          subtitle="Don't just take our word for it. Here's what engineering and product leaders have to say about our work."
+          title="Trusted by industry leaders."
+          subtitle="Here's what engineering and product leaders have to say about our work."
         />
       </Reveal>
-
-      <div className="mt-6 sm:mt-10">
+      <div className="mt-8">
         <StaggerTestimonials items={formattedTestimonials} />
       </div>
     </section>

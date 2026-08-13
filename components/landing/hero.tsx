@@ -74,33 +74,12 @@ export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    const handleTimeUpdate = () => {
-      // Loop seamlessly right before the video ends to avoid native player freeze/pause
-      if (video.duration && video.currentTime >= video.duration - 0.1) {
-        video.currentTime = 0.001
-      }
-    }
-
-    const handleEnded = () => {
-      video.currentTime = 0.001
-      video.play().catch(() => {})
-    }
-
-    video.addEventListener('timeupdate', handleTimeUpdate)
-    video.addEventListener('ended', handleEnded)
-
-    return () => {
-      video.removeEventListener('timeupdate', handleTimeUpdate)
-      video.removeEventListener('ended', handleEnded)
-    }
+    // Relying on native loop attribute for Safari compatibility
   }, [])
 
   return (
-    <section id="top" className="relative w-full px-4 pt-4 pb-6 sm:pb-12 sm:px-6 lg:px-8">
-      <div className="relative min-h-[70vh] sm:min-h-[85vh] w-full overflow-hidden rounded-2xl md:rounded-[2rem] border border-border shadow-2xl flex flex-col justify-between p-6 sm:p-10 lg:p-14">
+    <section id="top" className="relative w-full bg-black px-4 pt-0 sm:pt-4 pb-6 sm:pb-12 sm:px-6 lg:px-8">
+      <div className="relative min-h-[70vh] sm:min-h-[85vh] w-full overflow-hidden rounded-2xl md:rounded-[2rem] shadow-2xl flex flex-col justify-between p-6 sm:p-10 lg:p-14">
         
         <video
           ref={videoRef}
@@ -164,7 +143,7 @@ export function Hero() {
               </SpecularButton>
 
               <a
-                href="#solutions"
+                href="#what-we-do"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-medium text-white/80 transition-colors hover:text-white"
               >
                 See our work
@@ -188,14 +167,13 @@ export function Hero() {
                 transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className="mx-auto max-w-md text-sm text-white/75 sm:text-base leading-relaxed"
               >
-                Custom <span className="font-semibold text-white">AI solutions</span> that move your business forward — not just talk about it.
               </motion.p>
             </div>
 
             {/* Bottom-right scroll prompt */}
             <div className="col-span-12 md:col-span-3 text-right hidden md:block">
               <a
-                href="#solutions"
+                href="#what-we-do"
                 className="text-xs text-white/50 tracking-widest hover:text-white transition-colors uppercase"
               >
                 [Scroll to Explore]

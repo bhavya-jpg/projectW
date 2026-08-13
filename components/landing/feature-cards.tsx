@@ -1,11 +1,11 @@
-import { Share2, LayoutDashboard, PhoneCall, Brain } from 'lucide-react'
+import { Camera, LayoutDashboard, PhoneCall, Brain } from 'lucide-react'
 import { Reveal } from './reveal'
 
 const FEATURES = [
   {
-    icon: Share2,
-    title: 'Referral & Growth Engine',
-    desc: 'Turn your happiest customers into your best acquisition channel. Our referral engine lets you launch branded referral and affiliate programs in days, not months — track rewards, automate payouts, and watch word-of-mouth compound into predictable growth, all without writing a line of code.',
+    icon: Camera,
+    title: 'Drape AI',
+    desc: 'Upload a photo of a model and a set of clothes, then decide the pose. Drape AI generates fashion studio-level model shoots, completely replacing the need for highly expensive traditional photoshoots.',
   },
   {
     icon: LayoutDashboard,

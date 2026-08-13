@@ -146,9 +146,9 @@ export const LogoMarquee = memo(function LogoMarquee({
         className,
       )}
     >
-      <InfiniteSlider gap={48} reverse duration={30} durationOnHover={15}>
+      <InfiniteSlider gap={24} reverse duration={30} durationOnHover={15}>
         {logos.map((logo, i) => (
-          <div key={`${logo.alt}-${i}`} className="flex items-center justify-center px-4">
+          <div key={`${logo.alt}-${i}`} className="flex items-center justify-center px-2 sm:px-4">
             <LogoImage logo={logo} />
           </div>
         ))}

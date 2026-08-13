@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <!-- Very subtle grain, preserving the original monochrome palette -->
+    <filter id="blackTexture" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" seed="17" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0" result="mono"/>
+      <feComponentTransfer in="mono" result="softNoise">
+        <feFuncA type="table" tableValues="0 0.075"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="softNoise" mode="screen"/>
+    </filter>
+
+    <filter id="whiteTexture" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" seed="23" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0" result="mono"/>
+      <feComponentTransfer in="mono">
+        <feFuncR type="linear" slope="0.025" intercept="0.975"/>
+        <feFuncG type="linear" slope="0.025" intercept="0.975"/>
+        <feFuncB type="linear" slope="0.025" intercept="0.975"/>
+        <feFuncA type="table" tableValues="0 0.06"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="noise" mode="multiply"/>
+    </filter>
+
+    <radialGradient id="disc" cx="50%" cy="45%" r="62%">
+      <stop offset="0%" stop-color="#111111"/>
+      <stop offset="72%" stop-color="#0d0d0d"/>
+      <stop offset="100%" stop-color="#080808"/>
+    </radialGradient>
+
+    <radialGradient id="petal" cx="48%" cy="45%" r="75%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f7f7f7"/>
+    </radialGradient>
+
+    <clipPath id="discClip">
+      <circle cx="512" cy="512" r="510"/>
+    </clipPath>
+  </defs>
+
+  <!-- Outer field -->
+  <rect width="1024" height="1024" fill="#000000"/>
+  <circle cx="512" cy="512" r="510" fill="url(#disc)" filter="url(#blackTexture)"/>
+
+  <!-- Four-petal mark -->
+  <g fill="url(#petal)" filter="url(#whiteTexture)">
+    <!-- Upper-left -->
+    <path d="M 507 425
+             C 497 352, 451 250, 378 237
+             C 312 225, 263 269, 267 329
+             C 272 407, 363 470, 455 481
+             C 483 484, 501 468, 507 425 Z"/>
+
+    <!-- Upper-right -->
+    <path d="M 517 425
+             C 527 352, 573 250, 646 237
+             C 712 225, 761 269, 757 329
+             C 752 407, 661 470, 569 481
+             C 541 484, 523 468, 517 425 Z"/>
+
+    <!-- Lower-left -->
+    <path d="M 507 599
+             C 497 672, 451 774, 378 787
+             C 312 799, 263 755, 267 695
+             C 272 617, 363 554, 455 543
+             C 483 540, 501 556, 507 599 Z"/>
+
+    <!-- Lower-right -->
+    <path d="M 517 599
+             C 527 672, 573 774, 646 787
+             C 712 799, 761 755, 757 695
+             C 752 617, 661 554, 569 543
+             C 541 540, 523 556, 517 599 Z"/>
+  </g>
+
+  <!-- Center -->
+  <circle cx="512" cy="512" r="58" fill="#080808" filter="url(#blackTexture)"/>
+
+  <!-- Extremely subtle edge definition -->
+  <circle cx="512" cy="512" r="509" fill="none" stroke="#171717" stroke-width="2" opacity="0.55"/>
+</svg>

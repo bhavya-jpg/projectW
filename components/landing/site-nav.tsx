@@ -9,11 +9,9 @@ import { BOOKING_URL } from '@/lib/config'
 import { SpecularButton } from '@/components/ui/SpecularButton'
 
 const LINKS = [
-  { label: 'About', href: '#what-we-do' },
-  { label: 'Solutions', href: '#solutions' },
-  { label: 'Work', href: '#solutions' },
+  { label: 'Work', href: '#what-we-do' },
   { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Contact', href: BOOKING_URL },
+  { label: 'FAQ', href: '#faq' },
 ]
 
 function ThemeToggle() {
@@ -56,6 +54,18 @@ export function SiteNav() {
   const currentTheme = mounted ? (resolvedTheme || theme) : 'dark'
   const isDark = currentTheme === 'dark'
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const element = document.querySelector(href);
+      if (element) {
+        const y = element.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+      setOpen(false);
+    }
+  };
+
   return (
     <header
       className={cn(
@@ -78,6 +88,7 @@ export function SiteNav() {
             <a
               key={link.label}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
@@ -131,7 +142,7 @@ export function SiteNav() {
               <a
                 key={link.label}
                 href={link.href}
-                onClick={() => setOpen(false)}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="rounded-md px-2 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               >
                 {link.label}

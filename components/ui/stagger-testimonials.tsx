@@ -260,8 +260,7 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ items 
 
   return (
     <div
-      className="relative w-full overflow-hidden rounded-2xl bg-muted/20 border border-border/50"
-      style={{ height: 600 }}
+      className="relative w-full overflow-hidden rounded-2xl bg-muted/20 border border-border/50 h-[420px] sm:h-[600px]"
     >
       {testimonialsList.map((testimonial, index) => {
         const position = testimonialsList.length % 2

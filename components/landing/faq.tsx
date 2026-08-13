@@ -11,9 +11,9 @@ export function Faq() {
   const [open, setOpen] = useState(0)
 
   return (
-    <section id="faq" className="mx-auto max-w-7xl px-4 py-10 sm:py-20 md:py-24 lg:px-8">
+    <section id="faq" className="mx-auto max-w-7xl px-4 py-6 sm:py-12 md:py-16 lg:px-8">
       <Reveal>
-        <div className="flex flex-col gap-4 sm:gap-6 border-b border-border pb-6 sm:pb-10 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-4 sm:gap-6 pb-6 sm:pb-10 md:flex-row md:items-end md:justify-between">
           <h2 className="font-serif text-4xl leading-[1.08] font-semibold tracking-tight text-balance text-foreground sm:text-5xl">
             Frequently asked questions.{' '}
             <span className="text-muted-foreground">

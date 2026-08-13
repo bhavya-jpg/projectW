@@ -6,7 +6,7 @@ import { SpecularButton } from '@/components/ui/SpecularButton'
 
 export function CtaBanner() {
   return (
-    <section id="contact" className="mx-auto max-w-7xl px-4 pb-10 sm:pb-20 md:pb-24 sm:px-6 lg:px-8">
+    <section id="contact" className="mx-auto max-w-7xl px-4 pb-6 sm:pb-12 md:pb-16 sm:px-6 lg:px-8">
       <Reveal>
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card">
           <Image
@@ -48,7 +48,7 @@ export function CtaBanner() {
                 <ChevronRight className="size-4" aria-hidden />
               </SpecularButton>
               <a
-                href="#solutions"
+                href="#what-we-do"
                 className="inline-flex h-11 items-center justify-center rounded-md bg-white/10 border border-white/20 px-5 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
               >
                 See our work
