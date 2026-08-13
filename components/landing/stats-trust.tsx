@@ -27,7 +27,7 @@ const STATS = [
 
 export function StatsTrust() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-7xl px-4 py-10 sm:py-20 md:py-24 lg:px-8">
       <Reveal>
         <SectionHeader
           title={

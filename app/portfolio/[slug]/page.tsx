@@ -30,7 +30,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   return (
     <div className="min-h-dvh bg-background">
       <SiteNav />
-      <main className="pb-24 pt-32">
+      <main className="pb-12 pt-24 sm:pb-24 sm:pt-32">
         <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           {/* Back button */}
           <Link
@@ -42,7 +42,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </Link>
 
           {/* Hero Section */}
-          <header className="mb-16">
+          <header className="mb-10 sm:mb-16">
             <div className="mb-6 inline-flex items-center rounded-md border border-border bg-muted/50 px-3 py-1 text-sm font-medium text-foreground">
               {project.tag}
             </div>
@@ -55,7 +55,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </header>
 
           {/* Hero Image / Dashboard Mockup */}
-          <div className="mb-20 overflow-hidden rounded-2xl border border-border bg-card shadow-2xl">
+          <div className="mb-12 sm:mb-20 overflow-hidden rounded-2xl border border-border bg-card shadow-2xl">
             <div className="flex h-10 w-full items-center gap-1.5 border-b border-border bg-background px-4">
               <div className="h-3 w-3 rounded-full bg-red-500/80" />
               <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
@@ -74,8 +74,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </div>
 
           {/* Content Sections */}
-          <div className="grid gap-16 md:grid-cols-12">
-            <div className="md:col-span-8 md:col-start-3 space-y-16">
+          <div className="grid gap-10 sm:gap-16 md:grid-cols-12">
+            <div className="md:col-span-8 md:col-start-3 space-y-10 sm:space-y-16">
               
               <section>
                 <h2 className="mb-6 font-serif text-3xl font-semibold text-foreground">The Problem</h2>
@@ -110,7 +110,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </div>
 
           {/* Next Project Navigation */}
-          <div className="mt-24 border-t border-border pt-12">
+          <div className="mt-12 sm:mt-24 border-t border-border pt-8 sm:pt-12">
             <Link
               href={`/portfolio/${nextProject.slug}`}
               className="group flex items-center justify-between rounded-xl border border-transparent p-6 transition-colors hover:bg-muted/50"

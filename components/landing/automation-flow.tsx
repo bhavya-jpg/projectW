@@ -241,8 +241,8 @@ const getLayoutedElements = (nodes: any[], edges: any[], direction = 'TB') => {
 };
 
 export function AutomationFlow() {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState<any>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<any>([]);
   const [isLayoutReady, setIsLayoutReady] = useState(false);
 
   useEffect(() => {
@@ -269,7 +269,7 @@ export function AutomationFlow() {
   }, [setNodes, setEdges]);
 
   return (
-    <section className="py-24 w-full relative z-10">
+    <section className="py-10 sm:py-20 md:py-24 w-full relative z-10">
       <div className="absolute inset-0 z-[-1] bg-[#fafafa] dark:bg-black" />
       
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-12">

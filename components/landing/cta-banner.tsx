@@ -6,7 +6,7 @@ import { SpecularButton } from '@/components/ui/SpecularButton'
 
 export function CtaBanner() {
   return (
-    <section id="contact" className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
+    <section id="contact" className="mx-auto max-w-7xl px-4 pb-10 sm:pb-20 md:pb-24 sm:px-6 lg:px-8">
       <Reveal>
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card">
           <Image
@@ -17,11 +17,7 @@ export function CtaBanner() {
             className="object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-black/75" />
-          <div className="relative flex flex-col items-center px-6 py-20 text-center sm:py-28">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md px-3.5 py-1.5 text-xs font-medium text-white/90">
-              <span className="size-1.5 rounded-full bg-emerald-400" aria-hidden />
-              No commitment, just a conversation
-            </span>
+          <div className="relative flex flex-col items-center px-6 py-12 text-center sm:py-20 md:py-28">
             <h2 className="mt-6 max-w-3xl font-serif text-4xl leading-[1.05] font-semibold tracking-tight text-balance text-white sm:text-6xl">
               Let's build something groundbreaking.
             </h2>

@@ -75,7 +75,7 @@ export function Pricing() {
   const [annual, setAnnual] = useState(false)
 
   return (
-    <section id="pricing" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+    <section id="pricing" className="mx-auto max-w-7xl px-4 py-10 sm:py-20 md:py-24 lg:px-8">
       <Reveal>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div>
