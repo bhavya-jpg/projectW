@@ -62,32 +62,47 @@ export function VoiceAgentCard({ project, accent }: { project: any, accent: any 
     // Only run on client
     if (typeof window === 'undefined' || !cardRef.current) return;
     
+    let driverInstance: ReturnType<typeof driver> | null = null;
+    let timeoutId: NodeJS.Timeout;
+    let hasShown = false;
+
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        observer.disconnect();
-        
-        const driverObj = driver({
-          showProgress: true,
-          animate: true,
-          popoverClass: 'driver-theme-modern',
-          steps: [
-            { element: '#voice-agent-card', popover: { title: 'Live AI Voice Agent', description: 'This isn\'t just a video or a mockup, it\'s a real, live AI agent you can test right on the page.', side: "left", align: "start" } },
-            { element: '#talk-to-it-btn', popover: { title: 'Try it out', description: 'Click here to connect. After granting microphone permissions, you can start talking to Riya immediately.', side: "bottom", align: "start" } }
-          ]
-        });
-        
-        // Small delay so it doesn't pop up the exact millisecond it enters the viewport
-        setTimeout(() => {
-           driverObj.drive();
-        }, 600);
+        if (!hasShown) {
+          hasShown = true;
+          driverInstance = driver({
+            showProgress: false,
+            animate: true,
+            popoverClass: 'driver-theme-modern',
+            steps: [
+              { element: '#talk-to-it-btn', popover: { title: 'Try it out', description: 'Click here to connect. After granting microphone permissions, you can start talking to Riya immediately.', side: "bottom", align: "start" } }
+            ]
+          });
+          
+          timeoutId = setTimeout(() => {
+            driverInstance?.drive();
+          }, 600);
+        }
+      } else {
+        if (driverInstance) {
+          clearTimeout(timeoutId);
+          driverInstance.destroy();
+          driverInstance = null;
+        }
       }
     }, {
-      threshold: 0.5 // Trigger when 50% of the card is visible
+      threshold: 0.5
     });
     
     observer.observe(cardRef.current);
     
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (driverInstance) {
+        clearTimeout(timeoutId);
+        driverInstance.destroy();
+      }
+    };
   }, []);
 
   useEffect(() => {

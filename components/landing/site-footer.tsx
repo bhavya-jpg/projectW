@@ -52,16 +52,11 @@ export function SiteFooter() {
             transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}
             className="flex flex-col items-start justify-between space-y-8 md:col-span-6 lg:col-span-7"
           >
-            <h2 className="text-3xl font-normal tracking-tight sm:text-4xl lg:text-5xl text-[#f4f4f0]">
+            <h2 className="text-4xl font-normal tracking-tight sm:text-6xl lg:text-7xl text-[#f4f4f0]">
               Relax. We got you.
             </h2>
 
-            <a
-              href="#contact"
-              className="inline-block rounded-xl border border-white/40 px-6 py-2.5 text-sm font-normal text-[#f4f4f0] transition-all duration-300 hover:border-white hover:bg-white/10 backdrop-blur-sm"
-            >
-              Take a seat
-            </a>
+
           </motion.div>
 
           {/* Top Right: Navigation & Social Links Columns */}

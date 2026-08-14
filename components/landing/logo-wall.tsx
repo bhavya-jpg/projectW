@@ -42,9 +42,9 @@ export function LogoWall() {
   return (
     <section id="logo-wall" className="w-full py-4 sm:py-8 overflow-hidden">
       <Reveal>
-        <p className="text-center text-sm font-semibold tracking-wider text-muted-foreground uppercase mb-6 sm:mb-10">
+        <h2 className="text-center text-lg sm:text-2xl font-semibold tracking-wider text-muted-foreground uppercase mb-12 sm:mb-16 pt-8 sm:pt-16 px-4 sm:px-6 lg:px-8">
           Built with the most ambitious companies
-        </p>
+        </h2>
       </Reveal>
 
       <Reveal delay={100}>

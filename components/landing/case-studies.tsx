@@ -57,7 +57,7 @@ const ACCENTS: Record<string, AccentConfig> = {
 
 export function CaseStudies() {
   return (
-    <section className="py-6 sm:py-12 md:py-16 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="pt-6 pb-16 sm:pt-12 sm:pb-28 md:pt-16 md:pb-40 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Reveal>
         <SectionHeader
           title="Systems we have put into production."
@@ -78,8 +78,7 @@ export function CaseStudies() {
             <div className="flex h-full flex-col p-6 md:p-8 relative">
               <div className="mb-6 flex items-center justify-between">
                 <span className="inline-flex items-center rounded-full border border-transparent bg-foreground text-background px-3 py-1 text-xs font-semibold uppercase tracking-wide">
-                  {project.slug === 'drape-ai' && <span className="h-2 w-2 rounded-full bg-background animate-pulse mr-2" />}
-                  {project.slug === 'drape-ai' ? 'Auto-Animated' : project.tag}
+                  {project.tag}
                 </span>
                 
                 {/* Visual Indicator for Click */}
