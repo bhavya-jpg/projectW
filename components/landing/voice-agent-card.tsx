@@ -43,7 +43,7 @@ async function ensureMicrophonePermission(): Promise<"granted" | "denied" | "una
   }
 }
 
-export function VoiceAgentCard({ project }: { project: any }) {
+export function VoiceAgentCard({ project, accent }: { project: any, accent: any }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const agentRef = useRef<ConversationAgent | null>(null);
   const agentStateRef = useRef<AgentState>(AgentState.IDLE);
@@ -260,16 +260,21 @@ export function VoiceAgentCard({ project }: { project: any }) {
         }
       `}} />
       <div className="mb-6 flex items-center justify-between">
-        <span className="inline-flex items-center gap-2 rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-green-400">
-          <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+        <span className="inline-flex items-center rounded-full border border-transparent bg-foreground text-background px-3 py-1 text-xs font-semibold uppercase tracking-wide">
+          {project.tag}
+        </span>
+        
+        {/* Live Demo Indicator */}
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/50 backdrop-blur px-3 py-1 text-xs font-semibold text-foreground transition-colors group-hover/card:bg-foreground group-hover/card:text-background">
+          <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
           Live Demo
         </span>
       </div>
 
-      <h3 className="mb-3 text-3xl font-bold text-foreground transition-colors group-hover:text-primary md:text-4xl">
+      <h3 className="mb-3 flex items-center gap-3 text-3xl sm:text-4xl font-bold text-foreground transition-colors">
         {project.title}
       </h3>
-      <p className="mb-6 text-sm leading-relaxed text-muted-foreground md:text-base">
+      <p className="mb-6 text-sm sm:text-base leading-relaxed text-muted-foreground/80">
         {project.description}
       </p>
 
@@ -302,9 +307,9 @@ export function VoiceAgentCard({ project }: { project: any }) {
         </p>
       </div>
 
-      <div className="relative mt-auto w-full">
+      <div className="relative mt-auto w-full flex-1 flex flex-col">
         <div className="absolute inset-0 top-1/2 z-0 h-[120%] w-full -translate-y-1/2 rounded-full bg-primary/20 blur-[80px] dark:bg-primary/30" />
-        <div className="relative z-10 w-full overflow-hidden rounded-xl border border-foreground/20 bg-background shadow-2xl shadow-foreground/5 dark:border-white/10 dark:bg-black/80 dark:shadow-black/50 aspect-[16/9]">
+        <div className="relative z-10 w-full overflow-hidden rounded-xl border border-foreground/10 bg-background shadow-[inset_0_2px_15px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_2px_15px_rgba(255,255,255,0.02)] flex-1 flex flex-col min-h-[300px]">
           <div className="flex h-8 w-full items-center gap-1.5 border-b border-foreground/10 bg-muted/50 px-3 backdrop-blur dark:border-white/10">
             <div className="h-2 w-2 rounded-full bg-red-500/80" />
             <div className="h-2 w-2 rounded-full bg-yellow-500/80" />
@@ -313,7 +318,7 @@ export function VoiceAgentCard({ project }: { project: any }) {
               DWORKLABS / {project.title}
             </div>
           </div>
-          <div className="relative flex h-full w-full items-center justify-center bg-background dark:bg-[#0a0a0a] p-8">
+          <div className={`relative flex flex-1 h-full w-full items-center justify-center p-8 ${accent.bg}`}>
             
             {transcripts.length > 0 && (
               <div className="absolute inset-4 flex flex-col gap-3 overflow-y-auto pr-2 pb-16 scrollbar-thin scrollbar-thumb-foreground/10 scrollbar-track-transparent">

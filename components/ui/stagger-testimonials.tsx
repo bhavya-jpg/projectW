@@ -156,7 +156,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       className={cn(
         "absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] select-none",
         isCenter 
-          ? "z-10 bg-primary text-primary-foreground border-primary" 
+          ? "z-10 bg-[#1c1917] dark:bg-[#27272a] text-white border-[#1c1917] dark:border-[#27272a]" 
           : "z-0 bg-card text-card-foreground border-border hover:border-primary/50"
       )}
       style={{
@@ -191,13 +191,13 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       />
       <h3 className={cn(
         "text-base sm:text-lg font-medium leading-snug line-clamp-4",
-        isCenter ? "text-primary-foreground" : "text-foreground"
+        isCenter ? "text-white" : "text-foreground"
       )}>
         "{testimonial.testimonial}"
       </h3>
       <p className={cn(
         "absolute bottom-8 left-8 right-8 mt-2 text-sm italic truncate",
-        isCenter ? "text-primary-foreground/80" : "text-muted-foreground"
+        isCenter ? "text-white/80" : "text-muted-foreground"
       )}>
         - {testimonial.by}
       </p>

@@ -43,7 +43,7 @@ export function LogoWall() {
     <section id="logo-wall" className="w-full py-4 sm:py-8 overflow-hidden">
       <Reveal>
         <p className="text-center text-sm font-semibold tracking-wider text-muted-foreground uppercase mb-6 sm:mb-10">
-          Trusted by teams building the future
+          Built with the most ambitious companies
         </p>
       </Reveal>
 

@@ -155,12 +155,12 @@ export function Hero() {
           <div className="mt-8 sm:mt-16 grid grid-cols-12 items-end gap-4">
             
             {/* Tagline / micro copy bottom-left */}
-            <div className="col-span-12 md:col-span-3 text-xs text-white/50 tracking-wider">
-              AI-native solutions studio
+            <div className="col-span-12 md:col-span-5 text-sm sm:text-base font-sans text-white/80 leading-relaxed pr-4">
+              We design and build production-ready AI systems that integrate with your data, tools, and workflows.
             </div>
 
             {/* Center paragraph (like NEXORA reference description at bottom) */}
-            <div className="col-span-12 md:col-span-6 text-center">
+            <div className="col-span-12 md:col-span-4 text-center">
               <motion.p
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
