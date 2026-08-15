@@ -6,8 +6,7 @@ import { ArrowRight } from 'lucide-react'
 import { SERVICES } from '@/lib/config'
 import { SectionHeader } from './section-header'
 import { Reveal } from './reveal'
-import Lottie from 'lottie-react'
-import drapeLottie from '@/public/drape-hero-lottie.json'
+import { DrapeAiPreview } from './drape-ai-preview'
 import { VoiceAgentCard } from './voice-agent-card'
 
 type AccentConfig = { badge: string; border: string; glow: string; chartActive: string; chartMuted: string; bg: string; text: string; shadow: string }
@@ -97,29 +96,37 @@ export function CaseStudies() {
                 {project.description}
               </p>
 
-              <div className={`relative mt-auto w-full flex-1 flex flex-col ${project.slug === 'drape-ai' || project.slug === 'smart-crm-suite' ? 'min-h-[280px] sm:min-h-[360px]' : ''}`}>
+              <div className={`relative mt-auto w-full flex-1 flex flex-col ${project.slug === 'drape-ai' || project.slug === 'smart-crm-suite' || project.slug === 'ai-brain' ? 'min-h-[280px] sm:min-h-[360px]' : ''}`}>
                 {/* Glow effect behind mockup */}
                 <div className="absolute inset-0 top-1/2 z-0 h-[120%] w-full -translate-y-1/2 rounded-full bg-primary/20 blur-[80px] dark:bg-primary/30" />
                 
                 <div className={`relative z-10 w-full overflow-hidden rounded-xl border border-foreground/10 bg-background shadow-[inset_0_2px_15px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_2px_15px_rgba(255,255,255,0.02)] flex-1 flex flex-col`}>
                 
                 {project.slug === 'drape-ai' ? (
-                  <div className="group/drape relative flex flex-1 h-full w-full items-center justify-center bg-background/50 dark:bg-black/95 p-4">
-                    <div className="absolute inset-0 bg-pink-500/5 animate-pulse rounded-xl" />
-                    <div className="relative h-full w-full flex items-center justify-center overflow-hidden scale-110">
-                      <Lottie animationData={drapeLottie} loop={true} className="h-full w-full object-contain" />
-                    </div>
-                  </div>
+                  <DrapeAiPreview />
                 ) : project.slug === 'smart-crm-suite' ? (
-                  <div className="group/crm relative flex flex-1 h-full w-full items-center justify-center bg-white dark:bg-[#070709] p-2 sm:p-3 overflow-hidden">
+                  <div className="group/crm relative flex flex-1 h-full w-full items-center justify-center bg-[#f6f6fd] dark:bg-[#02060c] p-2 sm:p-3 overflow-hidden">
                     <img
                       src="/services/smart-crm-dashboard-light.png"
                       alt="Smart CRM Suite Dashboard (Light)"
-                      className="h-full w-full object-contain rounded-lg transition-transform duration-500 group-hover/card:scale-105 block dark:hidden"
+                      className="h-full w-full object-contain rounded-lg transition-transform duration-500 group-hover/card:scale-105 block dark:hidden mix-blend-multiply"
                     />
                     <img
                       src="/services/smart-crm-dashboard.png"
                       alt="Smart CRM Suite Dashboard (Dark)"
+                      className="h-full w-full object-contain rounded-lg transition-transform duration-500 group-hover/card:scale-105 hidden dark:block"
+                    />
+                  </div>
+                ) : project.slug === 'ai-brain' ? (
+                  <div className="group/brain relative flex flex-1 h-full w-full items-center justify-center bg-[#fbfcfe] dark:bg-[#050812] p-2 sm:p-3 overflow-hidden">
+                    <img
+                      src="/services/ai-brain-light.png"
+                      alt="AI Brain Dashboard (Light)"
+                      className="h-full w-full object-contain rounded-lg transition-transform duration-500 group-hover/card:scale-105 block dark:hidden mix-blend-multiply"
+                    />
+                    <img
+                      src="/services/ai-brain-dark.png"
+                      alt="AI Brain Dashboard (Dark)"
                       className="h-full w-full object-contain rounded-lg transition-transform duration-500 group-hover/card:scale-105 hidden dark:block"
                     />
                   </div>

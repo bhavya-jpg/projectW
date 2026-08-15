@@ -18,7 +18,7 @@ export function CtaBanner() {
           />
           <div className="absolute inset-0 bg-black/75" />
           <div className="relative flex flex-col items-center px-6 py-12 text-center sm:py-20 md:py-28">
-            <h2 className="mt-6 max-w-3xl font-serif text-4xl leading-[1.05] font-semibold tracking-tight text-balance text-white sm:text-6xl">
+            <h2 className="mt-6 max-w-3xl text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-balance text-white">
               Let's build something groundbreaking.
             </h2>
             <p className="mt-4 max-w-xl leading-relaxed text-pretty text-white/80">
