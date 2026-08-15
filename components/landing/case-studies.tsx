@@ -97,7 +97,7 @@ export function CaseStudies() {
                 {project.description}
               </p>
 
-              <div className={`relative mt-auto w-full flex-1 flex flex-col ${project.slug === 'drape-ai' ? 'min-h-[300px] sm:min-h-[400px]' : ''}`}>
+              <div className={`relative mt-auto w-full flex-1 flex flex-col ${project.slug === 'drape-ai' || project.slug === 'smart-crm-suite' ? 'min-h-[280px] sm:min-h-[360px]' : ''}`}>
                 {/* Glow effect behind mockup */}
                 <div className="absolute inset-0 top-1/2 z-0 h-[120%] w-full -translate-y-1/2 rounded-full bg-primary/20 blur-[80px] dark:bg-primary/30" />
                 
@@ -109,6 +109,19 @@ export function CaseStudies() {
                     <div className="relative h-full w-full flex items-center justify-center overflow-hidden scale-110">
                       <Lottie animationData={drapeLottie} loop={true} className="h-full w-full object-contain" />
                     </div>
+                  </div>
+                ) : project.slug === 'smart-crm-suite' ? (
+                  <div className="group/crm relative flex flex-1 h-full w-full items-center justify-center bg-white dark:bg-[#070709] p-2 sm:p-3 overflow-hidden">
+                    <img
+                      src="/services/smart-crm-dashboard-light.png"
+                      alt="Smart CRM Suite Dashboard (Light)"
+                      className="h-full w-full object-contain rounded-lg transition-transform duration-500 group-hover/card:scale-105 block dark:hidden"
+                    />
+                    <img
+                      src="/services/smart-crm-dashboard.png"
+                      alt="Smart CRM Suite Dashboard (Dark)"
+                      className="h-full w-full object-contain rounded-lg transition-transform duration-500 group-hover/card:scale-105 hidden dark:block"
+                    />
                   </div>
                 ) : (
                   <div className={`flex flex-1 w-full p-3 gap-3 ${accent.bg}`}>
