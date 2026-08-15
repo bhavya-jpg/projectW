@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { BrandLogo } from './brand-logo'
@@ -9,9 +11,9 @@ import { BOOKING_URL } from '@/lib/config'
 import { SpecularButton } from '@/components/ui/SpecularButton'
 
 const LINKS = [
-  { label: 'Work', href: '#what-we-do' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Work', href: '/#what-we-do' },
+  { label: 'Testimonials', href: '/#testimonials' },
+  { label: 'FAQ', href: '/#faq' },
 ]
 
 function ThemeToggle() {
@@ -42,6 +44,7 @@ export function SiteNav() {
   const [open, setOpen] = useState(false)
   const { theme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     setMounted(true)
@@ -55,16 +58,19 @@ export function SiteNav() {
   const isDark = currentTheme === 'dark'
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith('#')) {
-      e.preventDefault();
-      const element = document.querySelector(href);
+    const hash = href.includes('#') ? '#' + href.split('#')[1] : href
+    if (pathname === '/') {
+      e.preventDefault()
+      const element = document.querySelector(hash)
       if (element) {
-        const y = element.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        const y = element.getBoundingClientRect().top + window.scrollY - 80
+        window.scrollTo({ top: y, behavior: 'smooth' })
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
       }
-      setOpen(false);
+      setOpen(false)
     }
-  };
+  }
 
   return (
     <header
@@ -79,20 +85,20 @@ export function SiteNav() {
         className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
         aria-label="Primary"
       >
-        <a href="#top" className="flex items-center">
+        <Link href="/" className="flex items-center">
           <BrandLogo />
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-7 lg:flex">
           {LINKS.map((link) => (
-            <a
+            <Link
               key={link.label}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -141,14 +147,14 @@ export function SiteNav() {
         <div className="border-t border-border bg-background px-4 py-4 sm:hidden">
           <div className="flex flex-col gap-1">
             {LINKS.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className="rounded-md px-2 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
           <div className="mt-3 flex flex-col gap-2">

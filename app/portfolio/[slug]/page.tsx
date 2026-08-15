@@ -61,15 +61,39 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
               <div className="h-3 w-3 rounded-full bg-green-500/80" />
               <div className="ml-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
-                DWORKLABS / {project.title}
+                DEWORK LABS / {project.title}
               </div>
             </div>
-            <div className="aspect-[16/9] w-full bg-gradient-to-br from-muted/80 to-muted/30 p-8">
-              {/* TODO: replace with real project screenshot */}
-              <div className="h-full w-full rounded-lg border border-border/50 bg-background/50 shadow-sm flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-tr from-background/20 to-transparent" />
-                <span className="text-muted-foreground/60 text-lg font-medium tracking-wider uppercase">Dashboard Preview</span>
-              </div>
+            <div className="w-full bg-white dark:bg-[#070709] p-2 sm:p-4 overflow-hidden">
+              {project.image ? (
+                <>
+                  {project.imageLight ? (
+                    <>
+                      <img
+                        src={project.imageLight}
+                        alt={project.title}
+                        className="w-full h-auto rounded-lg object-contain border border-border/50 shadow-sm block dark:hidden"
+                      />
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-auto rounded-lg object-contain border border-border/50 shadow-sm hidden dark:block"
+                      />
+                    </>
+                  ) : (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-auto rounded-lg object-contain border border-border/50 shadow-sm"
+                    />
+                  )}
+                </>
+              ) : (
+                <div className="aspect-[16/9] w-full rounded-lg border border-border/50 bg-background/50 shadow-sm flex items-center justify-center relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-background/20 to-transparent" />
+                  <span className="text-muted-foreground/60 text-lg font-medium tracking-wider uppercase">Dashboard Preview</span>
+                </div>
+              )}
             </div>
           </div>
 
