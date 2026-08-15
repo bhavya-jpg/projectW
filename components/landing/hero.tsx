@@ -121,6 +121,8 @@ export function Hero() {
             >
               <SpecularButton
                 href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 size="md"
                 radius={9999}
                 tint="#ffffff"

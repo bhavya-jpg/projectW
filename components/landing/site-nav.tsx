@@ -100,6 +100,8 @@ export function SiteNav() {
           <ThemeToggle />
           <SpecularButton
             href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             size="sm"
             radius={8}
             tint={isDark ? '#ffffff' : '#0c0c0c'}
@@ -152,6 +154,8 @@ export function SiteNav() {
           <div className="mt-3 flex flex-col gap-2">
             <SpecularButton
               href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               size="sm"
               radius={8}
               tint={isDark ? '#ffffff' : '#0c0c0c'}

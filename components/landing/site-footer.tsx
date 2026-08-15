@@ -105,8 +105,8 @@ export function SiteFooter() {
 
           {/* Email & Legal */}
           <div className="flex flex-wrap items-center justify-between gap-6 md:col-span-6 lg:col-span-5">
-            <a href="mailto:biz@rejouice.com" className="transition-opacity hover:opacity-70">
-              biz@rejouice.com
+            <a href="mailto:deworklabs@gmail.com" className="transition-opacity hover:opacity-70">
+              deworklabs@gmail.com
             </a>
             <span>©2026 legal</span>
           </div>
