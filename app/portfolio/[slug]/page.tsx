@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { SERVICES } from '@/lib/config'
 import { SiteNav } from '@/components/landing/site-nav'
 import { SiteFooter } from '@/components/landing/site-footer'
+import { DrapeAiPreview } from '@/components/landing/drape-ai-preview'
 
 export function generateStaticParams() {
   return SERVICES.filter((s) => s.slug !== 'coming-soon').map((service) => ({
@@ -46,7 +47,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             <div className="mb-6 inline-flex items-center rounded-md border border-border bg-muted/50 px-3 py-1 text-sm font-medium text-foreground">
               {project.tag}
             </div>
-            <h1 className="mb-6 font-serif text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-foreground">
+            <h1 className="mb-6 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
               {project.title}
             </h1>
             <p className="text-xl leading-relaxed text-muted-foreground text-balance">
@@ -64,15 +65,17 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 DEWORK LABS / {project.title}
               </div>
             </div>
-            <div className="w-full bg-white dark:bg-[#070709] p-2 sm:p-4 overflow-hidden">
-              {project.image ? (
+            <div className="w-full bg-[#f6f6fd] dark:bg-[#02060c] p-2 sm:p-4 overflow-hidden">
+              {project.slug === 'drape-ai' ? (
+                <DrapeAiPreview />
+              ) : project.image ? (
                 <>
                   {project.imageLight ? (
                     <>
                       <img
                         src={project.imageLight}
                         alt={project.title}
-                        className="w-full h-auto rounded-lg object-contain border border-border/50 shadow-sm block dark:hidden"
+                        className="w-full h-auto rounded-lg object-contain border border-border/50 shadow-sm block dark:hidden mix-blend-multiply"
                       />
                       <img
                         src={project.image}
@@ -102,21 +105,21 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             <div className="md:col-span-8 md:col-start-3 space-y-10 sm:space-y-16">
               
               <section>
-                <h2 className="mb-6 font-serif text-3xl font-semibold text-foreground">The Problem</h2>
+                <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-foreground">The Problem</h2>
                 <div className="prose dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
                   <p>{project.problem}</p>
                 </div>
               </section>
 
               <section>
-                <h2 className="mb-6 font-serif text-3xl font-semibold text-foreground">The Solution</h2>
+                <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-foreground">The Solution</h2>
                 <div className="prose dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
                   <p>{project.solution}</p>
                 </div>
               </section>
 
               <section>
-                <h2 className="mb-6 font-serif text-3xl font-semibold text-foreground">The Impact</h2>
+                <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-foreground">The Impact</h2>
                 <div className="rounded-xl border border-border bg-card p-8">
                   <p className="text-lg font-medium text-foreground text-balance">
                     "{project.impact}"
@@ -125,7 +128,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               </section>
 
               <section>
-                <h2 className="mb-6 font-serif text-3xl font-semibold text-foreground">Why it matters</h2>
+                <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-foreground">Why it matters</h2>
                 <div className="prose dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
                   <p>{project.industryContext}</p>
                 </div>

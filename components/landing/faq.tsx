@@ -67,10 +67,8 @@ export function Faq() {
               <span className="w-8 h-px bg-foreground/30" />
               FAQ
             </span>
-            <h2 className="text-4xl lg:text-6xl font-serif font-semibold leading-[1.08] tracking-tight text-balance text-foreground mb-8">
-              Frequently asked
-              <br />
-              questions.
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-balance text-foreground mb-8">
+              Frequently asked questions.
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed mb-12">
               Everything you need to know about working with us. 

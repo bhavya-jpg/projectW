@@ -44,22 +44,24 @@ export const metadata: Metadata = {
   description:
     'Bring issues, projects, docs, and AI agents into one focused workspace. Plan projects, track issues, and let AI agents keep every workflow moving.',
   generator: 'v0.app',
+  manifest: '/site.webmanifest',
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
+        url: '/favicon-96x96.png',
+        sizes: '96x96',
+        type: 'image/png',
       },
       {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
+        url: '/favicon.svg',
         type: 'image/svg+xml',
       },
+      {
+        url: '/favicon.ico',
+      },
     ],
-    apple: '/apple-icon.png',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
 }
 
