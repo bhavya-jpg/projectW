@@ -14,7 +14,7 @@ export function Testimonials() {
   }))
 
   return (
-    <section id="testimonials" className="mx-auto max-w-7xl px-4 pt-16 pb-6 sm:pt-28 sm:pb-12 md:pt-40 md:pb-16 lg:px-8">
+    <section id="testimonials" className="mx-auto max-w-7xl px-4 pt-8 pb-6 sm:pt-12 sm:pb-12 md:pt-16 md:pb-16 lg:px-8">
       <Reveal>
         <SectionHeader
           title="Trusted by industry leaders."

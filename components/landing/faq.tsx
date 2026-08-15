@@ -77,20 +77,7 @@ export function Faq() {
               Can&apos;t find what you&apos;re looking for? Book a call and we&apos;ll be happy to help.
             </p>
 
-            {/* Trust badges */}
-            <div className="flex flex-wrap gap-3">
-              {["AI Solutions", "Web Products", "Enterprise Ready", "24/7 Support", "Fast Delivery"].map((badge, index) => (
-                <span
-                  key={badge}
-                  className={`px-4 py-2 border border-foreground/10 text-sm font-medium transition-all duration-500 ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                  }`}
-                  style={{ transitionDelay: `${index * 50 + 200}ms` }}
-                >
-                  {badge}
-                </span>
-              ))}
-            </div>
+
           </div>
 
           {/* Right: FAQ Accordion */}

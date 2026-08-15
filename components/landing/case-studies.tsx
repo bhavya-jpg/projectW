@@ -57,7 +57,7 @@ const ACCENTS: Record<string, AccentConfig> = {
 
 export function CaseStudies() {
   return (
-    <section className="pt-6 pb-16 sm:pt-12 sm:pb-28 md:pt-16 md:pb-40 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="pt-6 pb-12 sm:pt-12 sm:pb-16 md:pt-16 md:pb-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Reveal>
         <SectionHeader
           title="Systems we have put into production."
