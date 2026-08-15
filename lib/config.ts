@@ -1,4 +1,4 @@
-export const BOOKING_URL = "https://cal.com/[agency-name]";
+export const BOOKING_URL = "https://cal.com/dework-labs-hocfmt/30min";
 
 export const COMPANY_LOGOS = [
   "Google",
@@ -129,28 +129,28 @@ export const TESTIMONIALS = [
 
 export const FAQS = [
   {
-    question: "What kind of AI solutions do you build?",
-    answer: "We build everything from custom AI-powered web applications and internal workflow automations to integrating LLMs and computer vision into existing platforms."
+    question: "What primary AI products and custom solutions does deWork Labs specialize in?",
+    answer: "We build production-ready AI systems tailored to your workflows, including 24/7 AI Voice Agents (for automated lead qualification and booking), Drape AI (studio-quality virtual photoshoot pipelines for fashion brands), Smart CRM Suite (intelligent pipeline automation), and AI Brain (secure internal RAG knowledge bases)."
   },
   {
-    question: "How long does a typical project take?",
-    answer: "Most of our rapid prototypes and MVPs are delivered within 4-6 weeks. Larger enterprise integrations may take 2-3 months depending on complexity."
+    question: "How do your AI Voice Agents handle real customer calls and bookings?",
+    answer: "Our conversational AI voice agents answer inbound calls 24/7 with under 2-second response latency. They naturally qualify leads, answer FAQs, handle objections, and integrate directly with your Cal.com, Google Calendar, or CRM to schedule appointments automatically."
   },
   {
-    question: "Do you work with early-stage startups or only enterprises?",
-    answer: "We work with both! We help startups launch their first AI features quickly, and assist enterprises in safely deploying scalable AI infrastructure."
+    question: "What is Drape AI and how does it reduce photoshoot costs?",
+    answer: "Drape AI is our proprietary generative AI workflow for fashion and e-commerce brands. It transforms standard flat-lay garment or basic model photos into studio-grade imagery with customizable models and poses, cutting traditional photoshoot costs by up to 90%."
   },
   {
-    question: "What's your development process?",
-    answer: "We start with a deep dive into your business needs, followed by rapid prototyping. We iterate based on your feedback and then build out the robust, production-ready solution."
+    question: "How does the AI Brain work with our internal company data?",
+    answer: "AI Brain is a private, secure Retrieval-Augmented Generation (RAG) system. We index your company documents, Slack archives, Notion pages, and Drive files into an internal AI assistant that provides instant, verified answers with source citations while keeping your data strictly confidential."
   },
   {
-    question: "How do we get started?",
-    answer: "Book a call with us using any of the buttons on this page. We'll discuss your idea, assess feasibility, and propose a timeline and budget."
+    question: "How quickly can we launch a custom AI MVP or integrate your solutions?",
+    answer: "Rapid prototypes and custom AI MVPs are typically delivered within 4 to 6 weeks. Turnkey products like our AI Voice Agent or Smart CRM integration can be deployed even faster depending on your tech stack."
   },
   {
-    question: "Do you offer ongoing support after launch?",
-    answer: "Yes, we offer retainer agreements for ongoing maintenance, model fine-tuning, and feature additions to ensure your AI solution stays ahead of the curve."
+    question: "Can you integrate AI models with our existing tech stack, CRM, and APIs?",
+    answer: "Yes! We build secure middleware and API connectors so our AI Voice Agents, CRM tools, and AI Brain integrate directly with your existing databases, Salesforce, HubSpot, Stripe, or proprietary internal APIs without disrupting your current operations."
   }
 ];
 

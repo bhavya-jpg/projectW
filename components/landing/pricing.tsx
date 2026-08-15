@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Check, ArrowUpRight } from 'lucide-react'
 import { Reveal } from './reveal'
 import { cn } from '@/lib/utils'
+import { BOOKING_URL } from '@/lib/config'
 
 const TIERS = [
   {
@@ -180,7 +181,9 @@ export function Pricing() {
                   </ul>
 
                   <a
-                    href="#get-started"
+                    href={BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={cn(
                       'mt-8 inline-flex h-11 items-center justify-center rounded-md px-4 text-sm font-medium transition-colors',
                       tier.outline

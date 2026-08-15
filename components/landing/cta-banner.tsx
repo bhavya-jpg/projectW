@@ -27,6 +27,8 @@ export function CtaBanner() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <SpecularButton
                 href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 size="md"
                 radius={12}
                 tint="#ffffff"
