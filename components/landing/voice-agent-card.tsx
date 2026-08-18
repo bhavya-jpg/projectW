@@ -174,10 +174,10 @@ export function VoiceAgentCard({ project }: { project: any, accent: any }) {
               aria-hidden
               style={{
                 transform: orbDocked
-                  ? 'translateY(0) scale(0.52)'
+                  ? 'translateY(0) scale(var(--orb-dock-scale))'
                   : `translateY(-${centerLift}px) scale(1)`,
               }}
-              className="pointer-events-none max-h-[200px] w-auto origin-bottom object-contain drop-shadow-[0_10px_18px_rgba(148,148,156,0.38)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] dark:drop-shadow-[0_10px_22px_rgba(210,210,218,0.28)]"
+              className="pointer-events-none max-h-[200px] w-auto origin-bottom object-contain drop-shadow-[0_10px_18px_rgba(148,148,156,0.38)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] [--orb-dock-scale:0.52] md:[--orb-dock-scale:0.60] dark:drop-shadow-[0_10px_22px_rgba(210,210,218,0.28)]"
             />
           </div>
         </div>
