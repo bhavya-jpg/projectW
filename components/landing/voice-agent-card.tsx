@@ -4,7 +4,7 @@ import type { MouseEvent } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { MovingBorderButton } from '@/components/ui/moving-border-button'
 
-export function VoiceAgentCard({ project, accent }: { project: any, accent: any }) {
+export function VoiceAgentCard({ project }: { project: any, accent: any }) {
   return (
     <div id="voice-agent-card" className="flex h-full flex-col p-6 md:p-8 relative w-full text-left">
       <div className="mb-6 flex items-center justify-between">
@@ -54,20 +54,17 @@ export function VoiceAgentCard({ project, accent }: { project: any, accent: any 
               DWORKLABS / {project.title}
             </div>
           </div>
-          <div className={`relative flex flex-1 h-full w-full items-center justify-center p-8 ${accent.bg}`}>
-            <div className="flex items-center gap-1.5 h-16">
-              {[0, 1, 2, 3, 4, 5, 6].map((j) => (
-                <div
-                  key={j}
-                  className="w-2.5 rounded-full bg-green-500/80 animate-waveform"
-                  style={{
-                    height: '100%',
-                    animationDelay: `${j * 0.15}s`,
-                    animationDuration: '1.2s',
-                  }}
-                />
-              ))}
-            </div>
+          <div className="relative flex flex-1 h-full w-full items-center justify-center p-6">
+            <video
+              src="/orb-circular-crf30.webm"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              aria-hidden
+              className="pointer-events-none h-full w-full max-h-[200px] object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.28)] dark:drop-shadow-[0_12px_28px_rgba(0,0,0,0.5)]"
+            />
           </div>
         </div>
       </div>
