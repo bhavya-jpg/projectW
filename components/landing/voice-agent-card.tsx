@@ -1,12 +1,62 @@
 'use client'
 
-import type { MouseEvent } from 'react'
+import { useLayoutEffect, useRef, useState, type MouseEvent } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { MovingBorderButton } from '@/components/ui/moving-border-button'
 
+function revealCardBottom(el: HTMLElement) {
+  const card = el.closest('a') ?? el
+  const rect = card.getBoundingClientRect()
+  const overflow = rect.bottom - window.innerHeight
+  if (overflow <= 8) return
+  window.scrollTo({ top: window.scrollY + overflow, behavior: 'smooth' })
+}
+
 export function VoiceAgentCard({ project }: { project: any, accent: any }) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const stageRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [orbDocked, setOrbDocked] = useState(false)
+  const [centerLift, setCenterLift] = useState(0)
+
+  useLayoutEffect(() => {
+    const stage = stageRef.current
+    const video = videoRef.current
+    if (!stage || !video) return
+
+    const measure = () => {
+      setCenterLift(Math.max(0, (stage.clientHeight - video.offsetHeight) / 2))
+    }
+
+    measure()
+    const observer = new ResizeObserver(measure)
+    observer.observe(stage)
+    observer.observe(video)
+    video.addEventListener('loadeddata', measure)
+    return () => {
+      observer.disconnect()
+      video.removeEventListener('loadeddata', measure)
+    }
+  }, [])
+
+  const onTalkClick = (e: MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setOrbDocked(true)
+    if (cardRef.current) revealCardBottom(cardRef.current)
+  }
+
+  const stopNav = (e: MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
   return (
-    <div id="voice-agent-card" className="flex h-full flex-col p-6 md:p-8 relative w-full text-left">
+    <div
+      id="voice-agent-card"
+      ref={cardRef}
+      className="flex h-full flex-col p-6 md:p-8 relative w-full text-left"
+    >
       <div className="mb-6 flex items-center justify-between">
         <span className="inline-flex items-center rounded-full border border-transparent bg-foreground text-background px-3 py-1 text-xs font-semibold uppercase tracking-wide">
           {project.tag}
@@ -27,14 +77,8 @@ export function VoiceAgentCard({ project }: { project: any, accent: any }) {
         <MovingBorderButton
           as="span"
           duration={2000}
-          onClick={(e: MouseEvent) => {
-            e.preventDefault()
-            e.stopPropagation()
-          }}
-          onMouseDown={(e: MouseEvent) => {
-            e.preventDefault()
-            e.stopPropagation()
-          }}
+          onClick={onTalkClick}
+          onMouseDown={stopNav}
           containerClassName="relative z-10 inline-flex transition-transform hover:scale-105 active:scale-95"
           className="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm font-semibold"
         >
@@ -54,8 +98,12 @@ export function VoiceAgentCard({ project }: { project: any, accent: any }) {
               DWORKLABS / {project.title}
             </div>
           </div>
-          <div className="relative flex flex-1 h-full w-full items-center justify-center p-6">
+          <div
+            ref={stageRef}
+            className="relative flex min-h-0 h-full w-full flex-1 flex-col items-center justify-end p-6"
+          >
             <video
+              ref={videoRef}
               src="/orb-circular-crf30.webm"
               autoPlay
               loop
@@ -63,7 +111,12 @@ export function VoiceAgentCard({ project }: { project: any, accent: any }) {
               playsInline
               preload="auto"
               aria-hidden
-              className="pointer-events-none h-full w-full max-h-[200px] object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.28)] dark:drop-shadow-[0_12px_28px_rgba(0,0,0,0.5)]"
+              style={{
+                transform: orbDocked
+                  ? 'translateY(0) scale(0.52)'
+                  : `translateY(-${centerLift}px) scale(1)`,
+              }}
+              className="pointer-events-none max-h-[200px] w-auto origin-bottom object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.28)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] dark:drop-shadow-[0_12px_28px_rgba(0,0,0,0.5)]"
             />
           </div>
         </div>
