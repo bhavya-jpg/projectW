@@ -1,6 +1,6 @@
 'use client'
 
-import { useLayoutEffect, useRef, useState, type MouseEvent } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { MovingBorderButton } from '@/components/ui/moving-border-button'
 
@@ -12,12 +12,42 @@ function revealCardBottom(el: HTMLElement) {
   window.scrollTo({ top: window.scrollY + overflow, behavior: 'smooth' })
 }
 
+const ORB_MOVE_MS = 500
+const MIC_DENIED_MESSAGE = 'Mic permission required to talk to voice agent.'
+const MIC_UNAVAILABLE_MESSAGE = 'No microphone found. A mic is required to talk to the voice agent.'
+
+async function ensureMicrophonePermission(): Promise<'granted' | 'denied' | 'unavailable'> {
+  if (typeof navigator === 'undefined' || !navigator.mediaDevices?.getUserMedia) {
+    return 'unavailable'
+  }
+  try {
+    if (navigator.permissions?.query) {
+      const result = await navigator.permissions.query({ name: 'microphone' as PermissionName })
+      if (result.state === 'denied') return 'denied'
+      if (result.state === 'granted') return 'granted'
+    }
+  } catch {
+    // Permissions API may not support microphone; fall through to getUserMedia.
+  }
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+    stream.getTracks().forEach((track) => track.stop())
+    return 'granted'
+  } catch (err) {
+    const name = err instanceof DOMException ? err.name : ''
+    if (name === 'NotFoundError' || name === 'DevicesNotFoundError') return 'unavailable'
+    return 'denied'
+  }
+}
+
 export function VoiceAgentCard({ project }: { project: any, accent: any }) {
   const cardRef = useRef<HTMLDivElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [orbDocked, setOrbDocked] = useState(false)
   const [centerLift, setCenterLift] = useState(0)
+  const [micMessage, setMicMessage] = useState<string | null>(null)
+  const micCheckTimerRef = useRef<number | null>(null)
 
   useLayoutEffect(() => {
     const stage = stageRef.current
@@ -39,11 +69,34 @@ export function VoiceAgentCard({ project }: { project: any, accent: any }) {
     }
   }, [])
 
+  useEffect(() => {
+    return () => {
+      if (micCheckTimerRef.current != null) {
+        window.clearTimeout(micCheckTimerRef.current)
+      }
+    }
+  }, [])
+
   const onTalkClick = (e: MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
     setOrbDocked(true)
+    setMicMessage(null)
     if (cardRef.current) revealCardBottom(cardRef.current)
+
+    if (micCheckTimerRef.current != null) {
+      window.clearTimeout(micCheckTimerRef.current)
+    }
+    micCheckTimerRef.current = window.setTimeout(() => {
+      void (async () => {
+        const permission = await ensureMicrophonePermission()
+        if (permission === 'granted') {
+          setMicMessage(null)
+          return
+        }
+        setMicMessage(permission === 'unavailable' ? MIC_UNAVAILABLE_MESSAGE : MIC_DENIED_MESSAGE)
+      })()
+    }, ORB_MOVE_MS)
   }
 
   const stopNav = (e: MouseEvent) => {
@@ -102,6 +155,14 @@ export function VoiceAgentCard({ project }: { project: any, accent: any }) {
             ref={stageRef}
             className="relative flex min-h-0 h-full w-full flex-1 flex-col items-center justify-end p-6"
           >
+            {micMessage ? (
+              <p
+                role="status"
+                className="absolute inset-x-6 top-[28%] text-center text-sm leading-relaxed text-muted-foreground"
+              >
+                {micMessage}
+              </p>
+            ) : null}
             <video
               ref={videoRef}
               src="/orb-circular-crf30.webm"
@@ -116,7 +177,7 @@ export function VoiceAgentCard({ project }: { project: any, accent: any }) {
                   ? 'translateY(0) scale(0.52)'
                   : `translateY(-${centerLift}px) scale(1)`,
               }}
-              className="pointer-events-none max-h-[200px] w-auto origin-bottom object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.28)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] dark:drop-shadow-[0_12px_28px_rgba(0,0,0,0.5)]"
+              className="pointer-events-none max-h-[200px] w-auto origin-bottom object-contain drop-shadow-[0_10px_18px_rgba(148,148,156,0.38)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] dark:drop-shadow-[0_10px_22px_rgba(210,210,218,0.28)]"
             />
           </div>
         </div>
