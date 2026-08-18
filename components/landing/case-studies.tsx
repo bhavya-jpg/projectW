@@ -53,7 +53,7 @@ const ACCENTS: Record<string, AccentConfig> = {
   }
 }
 
-export function CaseStudies() {
+export function CaseStudies({ sessionCap = 2 }: { sessionCap?: number }) {
   return (
     <section className="pt-6 pb-12 sm:pt-12 sm:pb-16 md:pt-16 md:pb-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Reveal>
@@ -71,7 +71,7 @@ export function CaseStudies() {
           const accent = ACCENTS[project.slug] || ACCENTS['smart-crm-suite']
 
           const cardContent = isVoiceAgent ? (
-            <VoiceAgentCard project={project} accent={accent} />
+            <VoiceAgentCard project={project} accent={accent} sessionCap={sessionCap} />
           ) : (
             <div className="flex h-full flex-col p-6 md:p-8 relative">
               <div className="mb-6 flex items-center justify-between">
@@ -189,15 +189,18 @@ export function CaseStudies() {
             </div>
           )
 
+          const shellClassName = `relative z-10 flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-[hsl(270,15%,96%)] dark:bg-[hsl(270,15%,10%)] transition-all duration-500 hover:-translate-y-1.5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_50px_rgba(255,255,255,0.05)] hover:border-foreground/30 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`
+
           return (
             <Reveal key={project.title} delay={i * 100}>
               <div className="relative group/card h-full w-full flex flex-col">
-                <Link
-                  href={`/portfolio/${project.slug}`}
-                  className={`relative z-10 flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-[hsl(270,15%,96%)] dark:bg-[hsl(270,15%,10%)] transition-all duration-500 hover:-translate-y-1.5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_50px_rgba(255,255,255,0.05)] hover:border-foreground/30 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
-                >
-                  {cardContent}
-                </Link>
+                {isVoiceAgent ? (
+                  <div className={shellClassName}>{cardContent}</div>
+                ) : (
+                  <Link href={`/portfolio/${project.slug}`} className={shellClassName}>
+                    {cardContent}
+                  </Link>
+                )}
               </div>
             </Reveal>
           )

@@ -1,5 +1,5 @@
 ---
-description: Homepage voice agent card is a static case study preview
+description: Homepage voice agent card is a live Talk demo (not a full-card link)
 globs: components/landing/voice-agent-card.tsx
 alwaysApply: true
 ---
@@ -8,8 +8,16 @@ alwaysApply: true
 
 Active work is the **homepage** case study card in `components/landing/voice-agent-card.tsx`, rendered from `components/landing/case-studies.tsx` when `project.slug === 'ai-voice-agents'`.
 
-It is a static visual preview (waveform mockup). There is no live voice demo, no Sarvam SDK, and no Talk/End call flow.
+It is a **live voice demo**: Talk docks the orb, checks the mic, then starts a session. Hangup is a small **X** under the orb (shown only while connected). Transcript bubbles overlay the stage from just below the menu bar down to the orb (`overflow` clips older lines; mobile typically shows ~3). The orb pulse wrapper uses CSS (`.orb-pulse`), not per-frame React state.
+
+Do not wrap the voice card in a `Link`. Only **Read Case Study** navigates to `/portfolio/ai-voice-agents`. Talk / hangup must `preventDefault` + `stopPropagation`. Other case-study cards stay full-card links.
 
 Do not change other landing sections or `/portfolio/[slug]` unless asked.
 
-The card is wrapped in a `Link` to `/portfolio/ai-voice-agents`.
+## Client constraints
+
+- No vendor product names in identifiers, comments, or UI copy. Session proxy path is `/api/demo-session/`. Storage keys: `dw:visitor`, `dw:demo:sessions`.
+- Load the voice client with a dynamic import on Talk, not on page load.
+- Call `stop()` on unmount and every error / abort path (stale run, connect fail, thrown start).
+- Cap: `sessionCap` from the server (`VOICE_AGENT_DEMO_LIMIT`, default 2). Increment `dw:demo:sessions` only after a successful connect then hangup. At cap, Talk is a no-op.
+- Dock scale: `--orb-dock-scale: 0.52` (mobile), `0.60` from `md`.

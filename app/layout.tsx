@@ -5,6 +5,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SmoothScroll } from '@/components/smooth-scroll'
 import { BackgroundGlow } from '@/components/background-glow'
+import { VisitorBoot } from '@/components/visitor-boot'
 
 const geistSans = Geist({
   subsets: ['latin'],
@@ -99,6 +100,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <VisitorBoot />
           <BackgroundGlow />
           <SmoothScroll>
             {children}

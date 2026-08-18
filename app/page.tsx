@@ -8,7 +8,13 @@ import { Faq } from '@/components/landing/faq'
 import { CtaBanner } from '@/components/landing/cta-banner'
 import { SiteFooter } from '@/components/landing/site-footer'
 
+function readSessionCap() {
+  const parsed = Number.parseInt(process.env.VOICE_AGENT_DEMO_LIMIT ?? '2', 10)
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 2
+}
+
 export default function Page() {
+  const sessionCap = readSessionCap()
   return (
     <div className="min-h-dvh bg-background">
       <SiteNav />
@@ -16,7 +22,7 @@ export default function Page() {
         <Hero />
         <LogoWall />
         <div id="what-we-do">
-          <CaseStudies />
+          <CaseStudies sessionCap={sessionCap} />
         </div>
         <HowItWorksSection />
         <Testimonials />
