@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from "react";
+import { ArrowRight } from "lucide-react";
 import {
   AgentState,
   BrowserAudioInterface,
@@ -194,10 +195,8 @@ export function VoiceAgentCard({ project, accent }: { project: any, accent: any 
           {project.tag}
         </span>
         
-        {/* Live Demo Indicator */}
         <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/50 backdrop-blur px-3 py-1 text-xs font-semibold text-foreground transition-colors group-hover/card:bg-foreground group-hover/card:text-background">
-          <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-          Live Demo
+          Read Case Study <ArrowRight className="h-3.5 w-3.5" />
         </span>
       </div>
 
