@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Vercel deployment
 
-Ship the **repo root** Next.js app (`app/`, `components/`, `package.json`). Do not deploy `VOICE-FOR-WEBSITE/` — that folder is a leftover prototype.
+Ship the **repo root** Next.js app (`app/`, `components/`, `package.json`).
 
 - Framework: Next.js 16 App Router (Vercel auto-detects; no `vercel.json` unless a setting cannot live in `next.config.mjs`)
 - Package manager: **npm** (`package-lock.json`). Do not add `pnpm-lock.yaml`, `pnpm-workspace.yaml`, or a `packageManager` field for pnpm.

@@ -10,6 +10,6 @@ Active work is the **homepage** case study card in `components/landing/voice-age
 
 It is a static visual preview (waveform mockup). There is no live voice demo, no Sarvam SDK, and no Talk/End call flow.
 
-Do not change other landing sections, `/portfolio/[slug]`, or `VOICE-FOR-WEBSITE/` unless asked.
+Do not change other landing sections or `/portfolio/[slug]` unless asked.
 
 The card is wrapped in a `Link` to `/portfolio/ai-voice-agents`.
