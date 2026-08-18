@@ -9,8 +9,6 @@ import {
   ServerTranscriptMsg,
 } from "sarvam-conv-ai-sdk/browser";
 import { SARVAM_CONFIG } from "@/lib/sarvam";
-import { driver } from "driver.js";
-import "driver.js/dist/driver.css";
 
 type CallStatus = "idle" | "checking_mic" | "connecting" | "connected" | "error";
 
@@ -44,7 +42,6 @@ async function ensureMicrophonePermission(): Promise<"granted" | "denied" | "una
 }
 
 export function VoiceAgentCard({ project, accent }: { project: any, accent: any }) {
-  const cardRef = useRef<HTMLDivElement>(null);
   const agentRef = useRef<ConversationAgent | null>(null);
   const agentStateRef = useRef<AgentState>(AgentState.IDLE);
   const userSpeakingRef = useRef(false);
@@ -57,53 +54,6 @@ export function VoiceAgentCard({ project, accent }: { project: any, accent: any 
 
   // Force re-renders for waveform updates when connected
   const [frame, setFrame] = useState(0);
-
-  useEffect(() => {
-    // Only run on client
-    if (typeof window === 'undefined' || !cardRef.current) return;
-    
-    let driverInstance: ReturnType<typeof driver> | null = null;
-    let timeoutId: NodeJS.Timeout;
-    let hasShown = false;
-
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        if (!hasShown) {
-          hasShown = true;
-          driverInstance = driver({
-            showProgress: false,
-            animate: true,
-            popoverClass: 'driver-theme-modern',
-            steps: [
-              { element: '#talk-to-it-btn', popover: { title: 'Try it out', description: 'Click here to connect. After granting microphone permissions, you can start talking to Riya immediately.', side: "bottom", align: "start" } }
-            ]
-          });
-          
-          timeoutId = setTimeout(() => {
-            driverInstance?.drive();
-          }, 600);
-        }
-      } else {
-        if (driverInstance) {
-          clearTimeout(timeoutId);
-          driverInstance.destroy();
-          driverInstance = null;
-        }
-      }
-    }, {
-      threshold: 0.5
-    });
-    
-    observer.observe(cardRef.current);
-    
-    return () => {
-      observer.disconnect();
-      if (driverInstance) {
-        clearTimeout(timeoutId);
-        driverInstance.destroy();
-      }
-    };
-  }, []);
 
   useEffect(() => {
     let animationId: number;
@@ -238,42 +188,7 @@ export function VoiceAgentCard({ project, accent }: { project: any, accent: any 
   const waveAmp = waveLevelRef.current;
 
   return (
-    <div id="voice-agent-card" ref={cardRef} className="flex h-full flex-col p-6 md:p-8 relative w-full text-left">
-      <style dangerouslySetInnerHTML={{__html: `
-        .driver-theme-modern {
-          background-color: #000 !important;
-          color: #fff !important;
-          border: 1px solid rgba(255, 255, 255, 0.1) !important;
-          border-radius: 16px !important;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.5) !important;
-          font-family: inherit !important;
-        }
-        .driver-theme-modern .driver-popover-title {
-          font-size: 1.125rem !important;
-          font-weight: 700 !important;
-          color: #10b981 !important; /* emerald-500 */
-          margin-bottom: 0.5rem !important;
-        }
-        .driver-theme-modern .driver-popover-description {
-          font-size: 0.875rem !important;
-          color: rgba(255, 255, 255, 0.7) !important;
-          line-height: 1.5 !important;
-        }
-        .driver-theme-modern .driver-popover-footer button {
-          background-color: #27272a !important;
-          color: white !important;
-          border: 1px solid rgba(255, 255, 255, 0.1) !important;
-          border-radius: 8px !important;
-          padding: 6px 12px !important;
-          font-size: 0.75rem !important;
-          font-weight: 600 !important;
-          text-shadow: none !important;
-        }
-        .driver-theme-modern .driver-popover-footer button:hover {
-          background-color: #10b981 !important;
-          color: #000 !important;
-        }
-      `}} />
+    <div id="voice-agent-card" className="flex h-full flex-col p-6 md:p-8 relative w-full text-left">
       <div className="mb-6 flex items-center justify-between">
         <span className="inline-flex items-center rounded-full border border-transparent bg-foreground text-background px-3 py-1 text-xs font-semibold uppercase tracking-wide">
           {project.tag}
@@ -296,7 +211,6 @@ export function VoiceAgentCard({ project, accent }: { project: any, accent: any 
       <div className="mb-8 flex flex-col items-start gap-2">
         {!isBusy ? (
           <button 
-            id="talk-to-it-btn"
             onClick={startCall}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background px-6 py-2.5 text-sm font-semibold transition-transform hover:scale-105 active:scale-95 group-hover:bg-primary group-hover:text-primary-foreground"
           >

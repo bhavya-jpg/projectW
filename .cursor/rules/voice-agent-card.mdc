@@ -1,0 +1,23 @@
+---
+description: Homepage voice agent card is the active work surface
+globs: components/landing/voice-agent-card.tsx,lib/sarvam.ts,app/api/sarvam/**/*.ts
+alwaysApply: true
+---
+
+# Voice agent card
+
+Active work is the **homepage** live demo in `components/landing/voice-agent-card.tsx`, rendered from `components/landing/case-studies.tsx` when `project.slug === 'ai-voice-agents'`.
+
+Do not change other landing sections, `/demo/voice-agent` (mock), or `VOICE-FOR-WEBSITE/` unless asked.
+
+## Integration
+
+- SDK: `sarvam-conv-ai-sdk/browser` (`ConversationAgent`, `BrowserAudioInterface`)
+- IDs and rates: `lib/sarvam.ts`. Client `baseUrl` is `/api/sarvam/` with dummy `apiKey: "proxied"`.
+- Agent: Riya (`handler_name`). Always `stop()` on end/unmount.
+
+## Done / do not revert
+
+- **driver.js is removed.** Do not add tours, IntersectionObserver popovers, or the `driver.js` package.
+
+The card is wrapped in a `Link` to `/demo/voice-agent`; Talk/End must keep `preventDefault()`.
