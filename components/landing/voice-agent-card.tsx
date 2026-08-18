@@ -1,6 +1,8 @@
 'use client'
 
+import type { MouseEvent } from 'react'
 import { ArrowRight } from 'lucide-react'
+import { MovingBorderButton } from '@/components/ui/moving-border-button'
 
 export function VoiceAgentCard({ project, accent }: { project: any, accent: any }) {
   return (
@@ -22,10 +24,23 @@ export function VoiceAgentCard({ project, accent }: { project: any, accent: any 
       </p>
 
       <div className="mb-8 flex flex-col items-start gap-2">
-        <span className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background px-6 py-2.5 text-sm font-semibold transition-transform hover:scale-105 active:scale-95 group-hover:bg-primary group-hover:text-primary-foreground">
+        <MovingBorderButton
+          as="span"
+          duration={2000}
+          onClick={(e: MouseEvent) => {
+            e.preventDefault()
+            e.stopPropagation()
+          }}
+          onMouseDown={(e: MouseEvent) => {
+            e.preventDefault()
+            e.stopPropagation()
+          }}
+          containerClassName="relative z-10 inline-flex transition-transform hover:scale-105 active:scale-95"
+          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm font-semibold"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
           Talk to it now &rarr;
-        </span>
+        </MovingBorderButton>
       </div>
 
       <div className="relative mt-auto w-full flex-1 flex flex-col">
