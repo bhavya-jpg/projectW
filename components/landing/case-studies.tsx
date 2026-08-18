@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { SERVICES } from '@/lib/config'
@@ -194,7 +193,7 @@ export function CaseStudies() {
             <Reveal key={project.title} delay={i * 100}>
               <div className="relative group/card h-full w-full flex flex-col">
                 <Link
-                  href={isVoiceAgent ? '/demo/voice-agent' : `/portfolio/${project.slug}`}
+                  href={`/portfolio/${project.slug}`}
                   className={`relative z-10 flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-[hsl(270,15%,96%)] dark:bg-[hsl(270,15%,10%)] transition-all duration-500 hover:-translate-y-1.5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_50px_rgba(255,255,255,0.05)] hover:border-foreground/30 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
                 >
                   {cardContent}

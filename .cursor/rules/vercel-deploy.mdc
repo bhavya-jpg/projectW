@@ -8,19 +8,5 @@ alwaysApply: true
 Ship the **repo root** Next.js app (`app/`, `components/`, `package.json`). Do not deploy `VOICE-FOR-WEBSITE/` — that folder is a leftover prototype.
 
 - Framework: Next.js 16 App Router (Vercel auto-detects; no `vercel.json` unless a setting cannot live in `next.config.mjs`)
-- Package manager: **pnpm** (`packageManager` in `package.json`). Prefer `pnpm-lock.yaml` over `package-lock.json` when both exist.
-- Build: `pnpm build` / `next build`. `pnpm-workspace.yaml` `allowBuilds` is required for Vercel (sharp, msw).
-
-## Environment
-
-Set in the Vercel project (Production + Preview):
-
-```
-SARVAM_API_KEY=<server secret>
-```
-
-- Server-only. Used by `app/api/sarvam/[...path]/route.ts` as `X-API-Key`.
-- Never `NEXT_PUBLIC_SARVAM_*`, never in client bundles, never commit `.env*.local`.
-- Without this key, the voice card fails to start (proxy returns 500).
-
-Microphone needs HTTPS (Vercel) or `localhost`.
+- Package manager: **npm** (`package-lock.json`). Do not add `pnpm-lock.yaml`, `pnpm-workspace.yaml`, or a `packageManager` field for pnpm.
+- Build: `npm run build` / `next build`.

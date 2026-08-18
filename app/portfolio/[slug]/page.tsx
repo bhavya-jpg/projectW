@@ -55,7 +55,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             </p>
           </header>
 
-          {/* Hero Image / Dashboard Mockup */}
+          {project.slug !== 'ai-voice-agents' && (
           <div className="mb-12 sm:mb-20 overflow-hidden rounded-2xl border border-border bg-card shadow-2xl">
             <div className="flex h-10 w-full items-center gap-1.5 border-b border-border bg-background px-4">
               <div className="h-3 w-3 rounded-full bg-red-500/80" />
@@ -99,6 +99,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               )}
             </div>
           </div>
+          )}
 
           {/* Content Sections */}
           <div className="grid gap-10 sm:gap-16 md:grid-cols-12">
